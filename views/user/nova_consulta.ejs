@@ -1,0 +1,131 @@
+ <!DOCTYPE html>
+<div ng-app="novaConsulta" ng-controller="novaConsultaController">
+	<div class="col-md-12">
+
+		<div class="panel panel-primary" style =" margin: auto; border-color:green;">
+		 	<div class="panel-heading" style="background-color:green">Nova Consulta</div>
+		  	<div class="panel-body">
+		  		<div class="panel panel-primary">
+				 	<div class="panel-heading" style="background-color:green">Paciente</div>
+				  	<div class="panel-body">
+				  		<div class="col-md-12">
+				  			<% include consultas/paciente %>
+					   	</div>
+					</div>
+				</div>
+		   		<div class="panel panel-primary">
+				 	<div class="panel-heading" style="background-color:green">Consulta</div>
+				  	<div class="panel-body">
+				  		<div class="col-md-12">
+					  		<% include consultas/consulta %>
+					   	</div>
+					</div>
+				</div>
+				<div class="panel-grup" role="tablist" aria-multiselectable="true">
+				 	<div class="panel-heading" style="background-color:green">Prescrições</div>
+				  	<div class="panel-body">
+				  		<div class="col-md-12">
+					  		<% include consultas/prescricao %>
+					   	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var app = angular.module('novaConsulta',[]);
+
+app.controller('novaConsultaController', function($scope,$http){
+	
+	var paciente_id = null;
+	var consulta_id = null;
+
+	$scope.pSalvar = function(){
+	
+		//console.log(date);
+		var parameters = JSON.stringify({ pNome:$scope.pNome,
+			 pEmail:$scope.pEmail,
+			 pRG:$scope.pRG,
+			 pCPF:$scope.pCPF,
+			 pTelefone:$scope.pTelefone,
+			 pEstado:$scope.pEstado,
+			 pCidade:$scope.pCidade,
+			 pBairro:$scope.pBairro,
+			 pRua:$scope.pRua,
+			 pNumero:$scope.pNumero,
+			 pCEP:$scope.pCEP,
+			 pNas:$scope.pNasc});
+
+			console.log(parameters);
+
+			$http.post("/novo_paciente", parameters).
+				success(function(data, status, headers, config) {
+					// this callback will be called asynchronously
+					// when the response is available
+					//console.log(data);
+					console.log("Novo Paciente: 0K");
+					paciente_id = data.paciente_id;
+					console.log(paciente_id);
+				  }).
+				  error(function(data, status, headers, config) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+					console.log("Login Error");
+					//
+				  });
+	};
+
+	$scope.cSalvar = function(){
+	
+		//console.log(date);
+		var parameters = JSON.stringify({ 
+			cLocal: $scope.cLocal,
+			cData: $scope.cData,
+			cTemp: $scope.pTemp,
+			pPeso: $scope.pPeso,
+			pAlt: $scope.pAlt,
+			cObs: $scope.cObs,
+			cDiag: $scope.cDiag,
+			paciente: paciente_id});
+
+			console.log(parameters);
+			console.log(new Date($scope.cData));
+
+			$http.post("/nova_consulta", parameters).
+				success(function(data, status, headers, config) {
+					// this callback will be called asynchronously
+					// when the response is available
+					//console.log(data);
+					consulta_id = data.consulta_id;
+					console.log("Nova Consulta: 0K");
+				
+				  }).
+				  error(function(data, status, headers, config) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+					console.log("Login Error");
+					//
+				  });
+	};
+
+	iniciarPacienteTest = function(){
+		$scope.pNome = 'test';
+		$scope.pEmail  = 'test@test.com';
+		$scope.pRG  = '123456';
+		$scope.pCPF  = '123456';
+		$scope.pTelefone = '123456';
+		$scope.pEstado = 'BA';
+		$scope.pCidade = 'test';
+		$scope.pBairro = 'test';
+		$scope.pRua = 'test';
+		$scope.pNumero = '123456';
+		$scope.pCEP = '123456';
+		$scope.pNasc = '12/03/1991';
+	};
+
+	iniciarPacienteTest();
+
+});
+
+</script>

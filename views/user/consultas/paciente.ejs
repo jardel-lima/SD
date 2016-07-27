@@ -1,0 +1,135 @@
+
+<form class="form-inline">
+	<div class='row'>
+		
+		<div class="col-md-4">
+	 	
+	 	<div class="input-group" style="width:100%;">
+	    	<span class='input-group-addon'>Nome</span>
+	    	<input type="text" class="form-control" ng-model="pNome" required>
+	  	</div>
+
+		</div>
+		<div class="col-md-4">
+
+		  	<div class="input-group"  style="width:100%;">
+
+		    	<span class='input-group-addon'>Email</span>
+		    	<input type="email" class="form-control" ng-model="pEmail" required>
+
+		  	</div>
+		 </div>
+
+		<div class="col-md-4">
+  			<button type="submit" class="btn btn-default">Pesquisar</button></br> </br>
+  		</div>
+  	</div>
+  	<div class="row">
+
+  		<div class="col-md-4">
+		  	<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>RG</span>
+		    	<input type="text" class="form-control" ng-model="pRG" required>
+		  	</div>
+		</div>
+
+		<div class="col-md-4">
+		  	<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>CPF</span>
+		    	<input type="text" class="form-control" ng-model="pCPF" required>
+		  	</div>
+		</div>
+
+		<div class="col-md-4">
+		  	<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>Telefone</span>
+		    	<input type="text" class="form-control" ng-model="pTelefone">
+		  	</div>
+		</div>
+	</div>
+	</br> 
+
+	<div class='row'>
+		<div class="col-md-2">
+		  	<div class="input-group">
+		    	<span class='input-group-addon'>Estado</span>
+		    	<select class="form-control" ng-model="pEstado" required>
+		    		<option value="AC">AC</option>
+		    		<option value="AL">AL</option>
+		    		<option value="AP">AP</option>
+		    		<option value="AM">AM</option>
+		    		<option value="BA">BA</option>
+		    		<option value="CE">CE</option>
+		    		<option value="DF">DF</option>
+		    		<option value="ES">ES</option>
+		    		<option value="GO">GO</option>
+		    		<option value="MA">MA</option>
+		    		<option value="MT">MT</option>
+		    		<option value="MS">MS</option>
+		    		<option value="MG">MG</option>
+		    		<option value="PA">PA</option>
+		    		<option value="PB">PB</option>
+		    		<option value="PR">PR</option>
+		    		<option value="PE">PE</option>
+		    		<option value="PI">PI</option>
+		    		<option value="RJ">RJ</option>
+		    		<option value="RN">RN</option>
+		    		<option value="RS">RS</option>
+		    		<option value="RO">RO</option>
+		    		<option value="RR">RR</option>
+		    		<option value="SC">SC</option>
+		    		<option value="SP">SP</option>
+		    		<option value="SE">SE</option>
+		    		<option value="TO">TO</option>
+		    	</select>
+		  	</div>
+		</div>
+		<div class="col-md-3">
+		  	<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>Cidade</span>
+		    	<input type="text" class="form-control" ng-model="pCidade" required>
+		  	</div>
+		</div>
+
+		<div class="col-md-3">
+		  	<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>Bairro</span>
+		    	<input type="text" class="form-control" ng-model="pBairro" required>
+		  	</div>
+		</div>
+		
+		<div class="col-md-4">
+		  	<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>Rua</span>
+		    	<input type="text" class="form-control" ng-model="pRua" required>
+		  	</div>
+		</div>
+	</div>
+	</br>
+	<div class='row'>
+		<div class="col-md-4" >
+			<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>Número</span>
+		    	<input type="text" class="form-control" ng-model="pNumero" required>
+		  	</div>
+		</div>
+		<div class="col-md-4">
+		  	<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>CEP</span>
+		    	<input type="text" class="form-control" ng-model="pCEP" required>
+		  	</div>
+		</div>
+		<div class="col-md-4">
+		  	<div class="input-group" style="width:100%;">
+		    	<span class='input-group-addon'>Nascimento</span>
+		    	<input type="text" class="form-control" ng-model="pNasc" required>
+		  	</div>
+		</div>
+	  	
+	</div> </br>
+	<div class="row">
+		<div class="col-md-4">
+	  			<button type="submit" class="btn btn-default" ng-click="pSalvar()">Salvar</button></br> </br>
+	  	</div>
+	</div>
+</form>

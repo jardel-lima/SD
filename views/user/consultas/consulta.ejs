@@ -1,0 +1,94 @@
+ <!DOCTYPE html>
+<form class="form-inline">
+	<fieldset>
+		<div class='row'>
+			<div class="col-md-12">
+				<div class="col-md-8">
+					<div class="input-group"  style="width:100%;">
+
+						<span style="width:10%;" class="input-group-addon">Local da Consulta</span>  
+					  	<input style="width:90%;" ng-model="cLocal" class="form-control input-md" required type="text">
+
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon">Data</span>  
+					  	<input ng-model="cData" class="form-control input-md" type="text">
+					</div>
+				</div>
+			</div>
+		</div>
+		</br>
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Text input-->
+				<div class="col-md-4">
+					<div class="input-group">
+					  
+					  <span class="input-group-addon">Temeratura</span>  
+					 
+					  <input ng-model="pTemp" class="form-control input-md" type="text">
+					    
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="col-md-4">
+					<div class="input-group">
+					  <span class="input-group-addon">Peso</span>  
+					  
+					  <input ng-model="pPeso" class="form-control input-md" type="text">
+					    
+					</div>
+				</div>
+
+
+				<!-- Text input-->
+				<div class="col-md-4">
+					<div class="input-group">
+					  <span class="input-group-addon">Altura</span>  
+					  
+					  <input ng-model="pAlt"class="form-control input-md" required type="text">
+					 
+					</div>
+				</div>
+			</div>
+		</div>
+		</br>
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Textarea -->
+				<div class="form-group" >
+				  <label class="col-md-3 control-label">Observações</label>
+				  <div class="col-md-9">                     
+				    <textarea style="width: 500px; height: 150px;" class="form-control" ng-model="cObs"></textarea>
+				  </div>
+				</div>
+			</div>
+		</div>
+		</br>
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Textarea -->
+				<div class="form-group" >
+					<div class="col-md-3">
+				  		<label class=" control-label">Diagnóstico</label>
+				  	</div>
+					<div class="col-md-9">                     
+						<textarea style="width: 500px; height: 150px; padding-left:30px;" class="form-control" ng-model="cDiag" ></textarea>
+					</div>
+				</div>
+			</di>
+		</div>
+		</br>
+	</fieldset>
+	</div> </br>
+	<div class="row">
+		<div class="col-md-4">
+	  			<button type="submit" class="btn btn-default" ng-click="cSalvar()">Salvar</button></br> </br>
+	  	</div>
+	</div>
+</form>

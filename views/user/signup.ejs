@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<div class='row' id='header'>
+  <div class="col-md-12">
+    <nav class="navbar navbar-default navbar-static-top" style="background-color:green">
+      <a class="navbar-brand" style="color:white" href="/">MedicaMent</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel panel-primary" style ="width:50%; margin: auto; margin-top: 5%; border-color:green;">
+    <div class="panel-heading" style="background-color:green">Signup</div>
+    <div class="panel-body">
+      <div class='col-md-12'>
+        <form class="form-inline" action="/signup" method="post">
+            
+          <!-- Prepended text-->
+          
+          <div class="col-md-12">
+            <div class="input-group" style="width:100%;">
+              <span class="input-group-addon">Nome</span>
+              <input id="nome" name="nome" class="form-control" placeholder="" required="" type="text">
+            </div>
+          </div>
+            
+          </br> </br>
+
+          <div class="col-md-12">
+            <div class="input-group" style="width:100%;">
+              <span class="input-group-addon">Email</span>
+              <input id="email" type="email" name="email" class="form-control" placeholder="" required="" type="text">
+            </div>   
+          </div>
+            
+          </br> </br>
+          <!-- Prepended text-->
+            
+          <div class="col-md-12">
+            <div class="input-group" style="width:100%;">
+              <span class="input-group-addon">CRM</span>
+              <input id="crm" name="crm" class="form-control" placeholder="" type="text">
+            </div>
+          </div>
+            
+          </br> </br>
+
+          <!-- Prepended text-->
+             
+          <div class="col-md-12">
+            <div class="input-group" style="width:100%;">
+              <span class="input-group-addon">Local de Trabalho</span>
+              <input id="localTrb" name="local" class="form-control" placeholder="" required="" type="text">
+            </div>
+            
+          </div>
+           
+          </br> </br>
+          <!-- Prepended text-->
+            
+             
+          <div class="col-md-12">
+            <div class="input-group" style="width:100%;">
+              <span class="input-group-addon">Especialidade</span>
+              <input id="especialidade" name="especialidade" class="form-control" placeholder="" required="" type="text">
+            </div> 
+          </div>
+            
+          </br> </br>
+          <!-- Prepended text-->
+
+          <div class="col-md-12">
+            <div class="input-group" style="width:100%;">
+              <span class="input-group-addon">Senha</span>
+              <input id="senha" type="password" name="senha" class="form-control" placeholder="" required="" type="text">
+            </div>
+            
+          </div>
+           
+          </br> </br>
+          <!-- Prepended text-->
+            
+          <div class="col-md-12">
+            <div class="input-group" style="width:100%;">
+              <span class="input-group-addon">Repita Senha</span>
+              <input id="rsenha" type="password" name="rsenha" class="form-control" placeholder="" required="" type="text">
+            </div>
+          </div>
+ 
+          </br> </br>
+            <!-- Button -->
+          <div class="form-group">
+            <div class="col-md-12">
+              <input type="submit" id="signupButton" name="signupButton" value="Enviar" class="btn btn-primary">
+            </div>
+          </div>
+
+        </form>
+      </br></br>
+      <% if (erro) { %>
+        <div id="alertDiv"class="alert alert-danger" role="alert"><span> <%= erro %> </span></div>
+      <% } %>
+      </div>
+      </br>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var erro = "";
+</script>
+
+
