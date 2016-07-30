@@ -93,8 +93,7 @@ module.exports = {
 
   localizar: function(find, cb){
     Paciente.findOne({
-      nome: find.nome,
-      email: find.email
+      cpf: find.cpf
     }).exec(cb);
   } 
 };

@@ -43,8 +43,7 @@ module.exports = {
 		console.log("Localizar Paciente");
 		console.log(req.allParams());
 		Paciente.localizar({
-			nome: req.param('pNome'),
-			email: req.param('pEmail')
+			cpf: parseInt(req.param('pCpf'))
 		}, function(err, paciente){
 			if (err) {
 				console.log("Erro: "+err);

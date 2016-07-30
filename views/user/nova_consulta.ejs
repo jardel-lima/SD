@@ -112,8 +112,8 @@ app.controller('novaConsultaController', function($scope,$http,$filter){
 	
 		//console.log(date);
 		var parameters = JSON.stringify({ 
-			pNome:$scope.pNome,
-			pEmail:$scope.pEmail});
+			pCpf:$scope.pCPF}
+			);
 
 			console.log(parameters);
 
@@ -122,8 +122,10 @@ app.controller('novaConsultaController', function($scope,$http,$filter){
 					// this callback will be called asynchronously
 					// when the response is available
 					console.log(status)
-					//console.log(data.nascimento);
+					console.log(data);
 					if(data){
+						$scope.pNome = data.nome;
+						$scope.pEmail = data.email;
 						$scope.pRG  = data.rg;
 						$scope.pCPF  = data.cpf;
 						$scope.pTelefone = data.telefone;
@@ -165,31 +167,19 @@ app.controller('novaConsultaController', function($scope,$http,$filter){
 		});
 
 			console.log(parameters);
-/*
-			$http.post("/pesquisar_paciente", parameters).
+
+			$http.post("/adcionar_prescricao", parameters).
 				success(function(data, status, headers, config) {
 					// this callback will be called asynchronously
 					// when the response is available
-					console.log(status)
-					console.log(data.nascimento);
-					$scope.pRG  = data.rg;
-					$scope.pCPF  = data.cpf;
-					$scope.pTelefone = data.telefone;
-					$scope.pEstado = data.estado;
-					$scope.pCidade = data.cidade;
-					$scope.pBairro = data.bairro;
-					$scope.pRua = data.rua;
-					$scope.pNumero = data.numero;
-					$scope.pCEP = data.cep;
-					$scope.pNasc = $filter('date')(data.nascimento,'dd/MM/yyyy');
-					paciente_id = data.id;
+					console.log("Prescrição Adcionada!");
 
 				}).
 				error(function(data, status, headers, config) {
 					// called asynchronously if an error occurs
 					// or server returns response with an error status.
-					//
-				});*/
+					console.log("Erro!!!");
+				});
 	};
 
 	iniciarPacienteTest = function(){

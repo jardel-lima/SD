@@ -11,18 +11,18 @@ module.exports = {
 		console.log("Adcinar Prescrição");
 		console.log(req.allParams());
 		Prescricao.adcionar({
-			medicamento: req.param('prMedicamento'),
-			concentracao: req.param('prConcentracao'),
-			dosagem: req.param('prDosagem'),
-			dosagem_tipo: req.param('prDosagemTipo'),
-			turno_matutino: req.param('prMatutino'),
-			turno_vespertino: req.param('prVespertino'),
-			turno_noturno: req.param('prNoturno'),
-			periodo: req.param('prPeriodo'),
-			periodo_tipo: req.param('prPeriodoTipo'),
-			duracao: req.param('prDuracao'),
-			duracao_tipo: req.param('prDuracaoTipo'),
-			consulta: req.param('prConsulta')
+			medicamento: req.param('medicamento'),
+			concentracao: req.param('concentracao'),
+			dosagem: req.param('dosagem'),
+			dosagem_tipo: req.param('dosagem_tipo'),
+			turno_matutino: req.param('turno_matutino'),
+			turno_vespertino: req.param('turno_vespertino'),
+			turno_noturno: req.param('turno_noturno'),
+			periodo: req.param('periodo'),
+			periodo_tipo: req.param('periodo_tipo'),
+			duracao: req.param('duracao'),
+			duracao_tipo: req.param('duracao_tipo'),
+			consulta: req.param('consulta')
 		}, function(err, prescricao){
 			if (err) {
 				console.log("Erro: "+err);
