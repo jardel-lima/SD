@@ -27,10 +27,17 @@ module.exports = {
   		enum:['unidades','ml','colheres']
   	},
 
-  	turno:{
-  		type:'string',
-  		enum:['Matutino','Vespertino','Noturno']
+  	turno_matutino:{
+  		type:'boolean',
   	},
+
+    turno_vespertino:{
+     type:'boolean',
+    },
+
+    turno_noturno:{
+      type:'boolean',
+    },
 
   	periodo:{
   		type:'integer'
@@ -52,10 +59,25 @@ module.exports = {
 
   	consulta: {
       model: 'consulta'
- 	}
+ 	  }
 
- 	
+  },
 
+  adcionar: function(inputs, cb){
+    Prescricao.create({
+      medicamento: inputs.medicamento,
+      concentracao: inputs.concentracao,
+      dosagem: inputs.dosagem,
+      dosagem_tipo: inputs.dosagem_tipo,
+      turno_matutino: inputs.turno_matutino,
+      turno_vespertino: inputs.turno_vespertino,
+      turno_noturno: inputs.turno_noturno,
+      periodo: inputs.periodo,
+      periodo_tipo: inputs.periodo_tipo,
+      duracao: inputs.duracao,
+      duracao_tipo: inputs.duracao_tipo,
+      consulta: inputs.consulta
+    }).exec(cb);
   }
 
   

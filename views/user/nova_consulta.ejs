@@ -35,11 +35,12 @@
 </div>
 <script>
 var app = angular.module('novaConsulta',[]);
-
-app.controller('novaConsultaController', function($scope,$http){
+//var dateFormat = require('dateformat');
+app.controller('novaConsultaController', function($scope,$http,$filter){
 	
 	var paciente_id = null;
 	var consulta_id = null;
+	$scope.cData = $filter('date')(new Date(),'dd/MM/yyyy');
 
 	$scope.pSalvar = function(){
 	
@@ -81,7 +82,6 @@ app.controller('novaConsultaController', function($scope,$http){
 		//console.log(date);
 		var parameters = JSON.stringify({ 
 			cLocal: $scope.cLocal,
-			cData: $scope.cData,
 			cTemp: $scope.pTemp,
 			pPeso: $scope.pPeso,
 			pAlt: $scope.pAlt,
@@ -90,8 +90,7 @@ app.controller('novaConsultaController', function($scope,$http){
 			paciente: paciente_id});
 
 			console.log(parameters);
-			console.log(new Date($scope.cData));
-
+			
 			$http.post("/nova_consulta", parameters).
 				success(function(data, status, headers, config) {
 					// this callback will be called asynchronously
@@ -109,6 +108,90 @@ app.controller('novaConsultaController', function($scope,$http){
 				  });
 	};
 
+	$scope.pLocalizar = function(){
+	
+		//console.log(date);
+		var parameters = JSON.stringify({ 
+			pNome:$scope.pNome,
+			pEmail:$scope.pEmail});
+
+			console.log(parameters);
+
+			$http.post("/pesquisar_paciente", parameters).
+				success(function(data, status, headers, config) {
+					// this callback will be called asynchronously
+					// when the response is available
+					console.log(status)
+					//console.log(data.nascimento);
+					if(data){
+						$scope.pRG  = data.rg;
+						$scope.pCPF  = data.cpf;
+						$scope.pTelefone = data.telefone;
+						$scope.pEstado = data.estado;
+						$scope.pCidade = data.cidade;
+						$scope.pBairro = data.bairro;
+						$scope.pRua = data.rua;
+						$scope.pNumero = data.numero;
+						$scope.pCEP = data.cep;
+						$scope.pNasc = $filter('date')(data.nascimento,'dd/MM/yyyy');
+						paciente_id = data.id;	
+					}
+					
+
+				}).
+				error(function(data, status, headers, config) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+					//
+				});
+	};
+
+	$scope.prAdcionar = function(){
+	
+		//console.log(date);
+		var parameters = JSON.stringify({ 
+			medicamento: $scope.prMedicamento,
+			concentracao: $scope.prConcentracao,
+			dosagem: $scope.prDosagem,
+			dosagem_tipo: $scope.prDosagemTipo,
+			turno_matutino: $scope.prMatutino,
+			turno_vespertino: $scope.prVespertino,
+			turno_noturno: $scope.prNoturno,
+			periodo: $scope.prPeriodo,
+			periodo_tipo: $scope.prPeriodoTipo,
+			duracao: $scope.prDuracao,
+			duracao_tipo: $scope.prDuracaoTipo,
+			consulta: consulta_id
+		});
+
+			console.log(parameters);
+/*
+			$http.post("/pesquisar_paciente", parameters).
+				success(function(data, status, headers, config) {
+					// this callback will be called asynchronously
+					// when the response is available
+					console.log(status)
+					console.log(data.nascimento);
+					$scope.pRG  = data.rg;
+					$scope.pCPF  = data.cpf;
+					$scope.pTelefone = data.telefone;
+					$scope.pEstado = data.estado;
+					$scope.pCidade = data.cidade;
+					$scope.pBairro = data.bairro;
+					$scope.pRua = data.rua;
+					$scope.pNumero = data.numero;
+					$scope.pCEP = data.cep;
+					$scope.pNasc = $filter('date')(data.nascimento,'dd/MM/yyyy');
+					paciente_id = data.id;
+
+				}).
+				error(function(data, status, headers, config) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+					//
+				});*/
+	};
+
 	iniciarPacienteTest = function(){
 		$scope.pNome = 'test';
 		$scope.pEmail  = 'test@test.com';
@@ -124,7 +207,17 @@ app.controller('novaConsultaController', function($scope,$http){
 		$scope.pNasc = '12/03/1991';
 	};
 
-	iniciarPacienteTest();
+	iniciarConsultaTest = function(){
+		$scope.cLocal = 'Unimed';
+		$scope.pTemp = '27.9';
+		$scope.pPeso = '60';
+		$scope.pAlt = '1.70';
+		$scope.cObs = 'Observação';
+		$scope.cDiag = 'Diagnostico';
+	};
+
+	iniciarConsultaTest();
+	//iniciarPacienteTest();
 
 });
 

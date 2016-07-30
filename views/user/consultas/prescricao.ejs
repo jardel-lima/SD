@@ -13,7 +13,7 @@
 					
 						    <div class="input-group">
 						      <span class="input-group-addon">Nome</span>
-						      <input id="prependedtext" name="prependedtext" class="form-control" placeholder="" required="" type="text">
+						      <input id="prependedtext" name="prependedtext" class="form-control"  required type="text" ng-model="PrMedicamento">
 						    </div>
 						    
 						
@@ -25,7 +25,7 @@
 						  
 						    <div class="input-group">
 						      <span class="input-group-addon">Concentração</span>
-						      <input id="concInput" name="concInput" class="form-control" placeholder="" type="text">
+						      <input id="concInput" name="concInput" class="form-control" ng-model="prConcentracao" type="text">
 						    </div>
 						    
 						 
@@ -42,7 +42,7 @@
 						<div class="col-md-2">
 						    <div class="input-group">
 						      <span class="input-group-addon">Dosagem</span>
-						      <input id="dosInput" name="dosInput" class="form-control" placeholder="" required="" type="text">
+						      <input id="dosInput" name="dosInput" class="form-control" required ng-model="prDosagem" type="text">
 						    </div>
 						    
 						</div>
@@ -52,7 +52,7 @@
 						
 						  
 						<div class="col-md-2">
-						    <select id="selectbasic" name="selectbasic" class="form-control">
+						    <select id="selectbasic" ng-model="prDosagemTipo" class="form-control">
 						      <option value="1">unidades</option>
 						      <option value="2">ml</option>
 						      <option value="3">colheres</option>
@@ -62,18 +62,18 @@
 						<div class="col-md-8">
 						<!-- Multiple Checkboxes (inline) -->
 							<div class="form-group">
-							  <label class="col-md-2 control-label" for="turnoInput">Turno:</label>
+							  <label class="col-md-2 control-label">Turno:</label>
 							  <div class="col-md-6">
-							    <label class="checkbox-inline" for="turnoInput-0">
-							      <input name="turnoInput" id="turnoInput-0" value="1" type="checkbox">
+							    <label class="checkbox-inline">
+							      <input ng-model="prMatutino" type="checkbox">
 							      Matutino
 							    </label>
-							    <label class="checkbox-inline" for="turnoInput-1">
-							      <input name="turnoInput" id="turnoInput-1" value="2" type="checkbox">
+							    <label class="checkbox-inline" >
+							      <input ng-model="prVespertino" type="checkbox">
 							      Vespertino
 							    </label>
-							    <label class="checkbox-inline" for="turnoInput-2">
-							      <input name="turnoInput" id="turnoInput-2" value="3" type="checkbox">
+							    <label class="checkbox-inline">
+							      <input ng-model="prNoturno" type="checkbox">
 							      Noturno
 							    </label>
 							  </div>
@@ -90,7 +90,7 @@
 						  <div class="col-md-3">
 						    <div class="input-group">
 						      <span class="input-group-addon">A cada</span>
-						      <input id="periodoInput" name="periodoInput" class="form-control" placeholder="" required="" type="text">
+						      <input ng-model="prPeriodo" class="form-control" required type="text">
 						    </div>
 						    
 						  </div>
@@ -99,7 +99,7 @@
 						<!-- Select Basic -->
 							<div class="form-group">
 							  
-							    <select id="selectbasic" name="selectbasic" class="form-control">
+							    <select id="selectbasic" ng-model="prPeriodoTipo" class="form-control">
 							      <option value="horas">horas</option>
 							      <option value="dias">dias</option>
 							      <option value="semanas">semanas</option>
@@ -113,7 +113,7 @@
 						 <div class="col-md-3">
 						    <div class="input-group">
 						      <span class="input-group-addon">Duração</span>
-						      <input id="durInput" name="durInput" class="form-control" placeholder="" required="" type="text">
+						      <input ng-model="prDuracao" class="form-control" required type="text">
 						    </div>
 						    
 						</div>
@@ -123,7 +123,7 @@
 							<div class="form-group">
 							 
 							  
-							    <select id="selectbasic" name="selectbasic" class="form-control">
+							    <select ng-model="prDuracaoTipo" class="form-control">
 							      <option value="vezes">vezes</option>
 							      <option value="dias">dias</option>
 							      <option value="meses">meses</option>
@@ -133,6 +133,13 @@
 						</div>
 
 					</div>
+				</div>
+				</div> 
+				<br> </br>
+				<div class="row">
+					<div class="col-md-4">
+			  			<button type="submit" class="btn btn-default" ng-click="prAdcionar()">Salvar</button></
+		  			</div>
 				</div>
 		   	</div>
 		</div>

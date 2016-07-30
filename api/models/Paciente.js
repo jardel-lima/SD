@@ -89,6 +89,13 @@ module.exports = {
       cep: inputs.cep,
       nascimento:inputs.nascimento
     }).exec(cb);
+  },
+
+  localizar: function(find, cb){
+    Paciente.findOne({
+      nome: find.nome,
+      email: find.email
+    }).exec(cb);
   } 
 };
 

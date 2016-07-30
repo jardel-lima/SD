@@ -18,7 +18,7 @@ module.exports = {
 			diag: req.param('cDiag'),
 			medico: req.session.me,
 			paciente: req.param('paciente'),
-			date: new Date(req.param('cData'))
+			date: new Date()
 		}, function(err, consulta){
 				if (err) {
 					console.log("Erro: "+err);
