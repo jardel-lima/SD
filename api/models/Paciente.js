@@ -30,8 +30,7 @@ module.exports = {
   	cpf:{
   		type:'integer',
   		size:11,
-  		required: true,
-      unique:true
+  		primaryKey:true
   	},
   	
   	telefone:{

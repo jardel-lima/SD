@@ -13,6 +13,7 @@ module.exports = {
    * `UserController.login()`
    */
   login: function (req, res) {
+  	
   	console.log("Login");
   	console.log(req.allParams());
   	
@@ -29,6 +30,7 @@ module.exports = {
   logout: function (req, res) {
 		// "Forget" the user from the session.
 	// Subsequent requests from this user agent will NOT have `req.session.me`.
+
 	req.session.me = null;
 	console.log('Logout')
 	// If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
@@ -46,6 +48,8 @@ module.exports = {
    * `UserController.signup()`
    */
   signup: function (req, res) {
+
+  	
     // Attempt to signup a user using the provided parameters
     console.log("Signup");
     console.log(req.allParams());
@@ -93,7 +97,7 @@ module.exports = {
 		return res.ok('Signup successful!');
 	}else
 		// Otherwise if this is an HTML-wanting browser, redirect to /welcome.
-		return res.redirect('/welcome');
+		return res.redirect('/consultas');
 	});
   },
 

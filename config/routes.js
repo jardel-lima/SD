@@ -39,7 +39,7 @@ module.exports.routes = {
   'post /pesquisar_paciente': 'PacienteController.localizar',
   'post /adcionar_prescricao': 'PrescricaoController.adcionar',
   'get /': 'LoginController.login',
-  'get /login': { view: 'user/login'},
+  'get /login': 'LoginController.login',
   'get /signup': { view: 'user/signup',
                    locals: {
                         erro: null
@@ -48,14 +48,8 @@ module.exports.routes = {
   'get /welcome': { view: 'user/welcome'},
   
   'get /logout': 'UserController.logout',
-  'get /consultas':{view: 'user/consultas', 
-                    locals: {
-                        layout: 'templates/template'
-                    }},
-  'get /nova_consulta':{view: 'user/nova_consulta', 
-                  locals: {
-                      layout: 'templates/template'
-                  }}
+  'get /consultas':'LoginController.consultas',
+  'get /nova_consulta':'LoginController.nova_consulta'
 
 
   /***************************************************************************

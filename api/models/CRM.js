@@ -10,8 +10,7 @@ module.exports = {
   attributes: {
 	crm: {
 		type: 'string',
-		required: true,
-		unique: true
+		primaryKey:true
 	},
 
 	// Add a reference to User

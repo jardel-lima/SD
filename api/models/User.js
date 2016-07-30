@@ -9,12 +9,18 @@ module.exports = {
 		name:{
 			type:'string',
 			required: true
-		},
+		}
+		cpf:{
+			type:'integer'
+			size:11
+			primaryKey: true
+		}
+		
 		email: {
 			type: 'email',
 			required: true,
-			unique: true
 		},
+
 		password: {
 			type: 'string',
 			required: true

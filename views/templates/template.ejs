@@ -16,21 +16,26 @@
 		
 	</div>
 	<div class='row' id='content'>
-		<div class="col-md-2" id="menu" style="">
-			
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Navegar</h3>
-			  	</div>
-			  	<div class="panel-body">
-					<div class="list-group">
-						  <button type="button" class="list-group-item">Perfil</button>
-						  <button type="button" class="list-group-item">Consultas</button>
-						 
-					</div>
-			  	</div>
-			</div>
-			
+		<div class="col-md-2" id="menu">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Navegar</h3>
+				  	</div>
+				  	<div class="panel-body">
+						<div class="list-group">
+							  <button type="button" class="list-group-item">Perfil</button>
+							  <button type="button" class="list-group-item" onclick="consultas()">Consultas</button>
+							 
+						</div>
+				  	</div>
+				</div>
+
+			<script>
+				var consultas = function(){
+						location.assign("http://localhost:1337/consultas")
+				};
+				
+			</script>
 		</div>
 		<div class="col-md-10">
 			 <%- body %>

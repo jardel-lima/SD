@@ -14,14 +14,34 @@ module.exports = {
    */
   login: function (req, res) {
 
-  	console.log(req.session.me);
-
   	if(req.session.me != undefined)
   		return res.redirect("/consultas");
 
  	return res.view("user/login");
 
-    
+  },
+
+  nova_consulta: function (req, res) {
+
+  	if(req.session.me != undefined)
+  		return res.view("user/nova_consulta",{
+                      layout: 'templates/template'
+                  });
+
+ 	return res.redirect("/");
+
+  },
+
+  consultas: function (req, res) {
+
+  	if(req.session.me != undefined)
+  		return res.view("user/consultas", {
+                        layout: 'templates/template'
+                    });
+
+ 	return res.redirect("/");
+
   }
+
 };
 
