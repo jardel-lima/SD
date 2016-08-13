@@ -6,19 +6,32 @@
  */
 
 module.exports = {
+  tableName:'Especialidade',
+  autoCreatedAt:false,
+  autoUpdatedAt:false,
 
   attributes: {
+
+    id:{
+      type:'interger',
+      autoincrement:true,
+      primaryKey:true,
+      columnName:'id'
+    },
+
   	nome:{
   		type:"string",
+      columnName:'especialidade'
   	},
 
-  	// Add a reference to User
-    owner: {
+  	// Add a reference to User/*
+    owners: {
       collection: 'user',
-      via:'especialidades'
+      via:'especialidade',
+      through:'medicoespecialidade'
     }
   },
-
+/*
   addEspecialidade: function(input){
   	console.log("Add Especialidade");
   	Especialidade.findOne({nome:input.especialidade}).exec( function(err,foundEspecialidade){
@@ -36,6 +49,6 @@ module.exports = {
   			input.user.especialidades.add({nome:input.especialidade});
   		}
   	});
-  }
+  }*/
 };
 

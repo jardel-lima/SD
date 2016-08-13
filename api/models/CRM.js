@@ -6,16 +6,22 @@
  */
 
 module.exports = {
-
+ 
+  tableName:'CRM',
+  autoCreatedAt:false,
+  autoUpdatedAt:false,
   attributes: {
-	crm: {
-		type: 'string',
-		primaryKey:true
-	},
+	
+    crm: {
+  		type: 'string',
+  		primaryKey:true,
+      columnName:'CRM'
+  	},
 
 	// Add a reference to User
     owner: {
-      model: 'user'
+      model: 'user',
+      columnName:'Medico_cpf'
     }
 
   },

@@ -5,25 +5,35 @@
 * @docs :: http://sailsjs.org/#!documentation/models
 */
 module.exports = {
+	//connection: 'mysqlServer',
+	tableName:'Medico',
+	autoCreatedAt:false,
+	autoUpdatedAt:false,
 	attributes: {
+
 		name:{
 			type:'string',
-			required: true
-		}
+			required: true,
+			columnName:'name'
+		},
+
 		cpf:{
-			type:'integer'
-			size:11
-			primaryKey: true
-		}
+			type:'string',
+			size:11,
+			primaryKey: true,
+			columnName:'cpf'
+		},
 		
 		email: {
 			type: 'email',
 			required: true,
+			columnName:'email'
 		},
 
 		password: {
 			type: 'string',
-			required: true
+			required: true,
+			columnName:'password'
 		},
 
 		// Add a reference to Pets
@@ -31,19 +41,19 @@ module.exports = {
 	      collection: 'crm',
 	      via: 'owner',
 	    },
-
+		
 	    // Add a reference to Pets
 	    especialidades: {
 	      collection: 'especialidade',
-	      via: 'owner',
-      	  dominant: true
+	      via: 'medico',
+      	  through:'medicoespecialidade'
 	    },
 
 	    // Add a reference to Pets
 	    locaisDeTrabalho: {
 	      collection: 'localdetrabalho',
-	      via: 'owner',
-      	  dominant: true
+	      via: 'medico',
+      	  through:'medicolocaltrabalho'
 	    },
 
 	    consultas: {

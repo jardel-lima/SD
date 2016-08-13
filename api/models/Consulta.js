@@ -6,50 +6,72 @@
  */
 
 module.exports = {
+  tableName:'Consulta',
+  autoCreatedAt:false,
+  autoUpdatedAt:false,
 
   attributes: {
-  	
+  	id:{
+      type:'interger',
+      autoincrement:true,
+      primaryKey:true,
+      columnName:'id'
+    },
+
   	local:{
-  		type:'string',
-  		required:true
+  		model:'localdetrabalho',
+      columnName:'local_C'
   	},
 
   	data:{
   		type:'date',
-  		required:true
+  		required:true,
+      columnName:'data_C'
   	},
 
   	temperatura:{
-  		type:'float'
+  		type:'float',
+      columnName:'temperatura'
   	},
 
   	peso:{
-  		type: 'float'
+  		type: 'float',
+      columnName:'peso'
   	},
 
   	altura:{
-  		type: 'float'
+  		type: 'float',
+      columnName:'altura'
   	},
 
   	obs:{
-  		type:'text'
+  		type:'text',
+      columnName:'obs'
   	},
 
   	diag:{
-  		type: 'text'
+  		type: 'text',
+      columnName:'diag'
   	},
 
-    paciente: {
-      model: 'paciente'
+    status:{
+      type:'string',
+      columnName:'status'
     },
 
+    paciente: {
+      model: 'paciente',
+      columnName:'Paciente_cpf'
+    },
+/*
     prescricoes: {
         collection: 'prescricao',
         via: 'consulta'
-    },
+    },*/
 
     medico:{
-      model:'user'
+      model:'user',
+      columnName:'Medico_cpf'
     }
 
   },

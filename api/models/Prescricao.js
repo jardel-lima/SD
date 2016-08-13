@@ -7,24 +7,38 @@
 
 module.exports = {
 
+  tableName:'Prescricao',
+  autoCreatedAt:false,
+  autoUpdatedAt:false,
+
   attributes: {
+    id:{
+      type:'interger',
+      autoincrement:true,
+      primarykey:true,
+      columnName:'id'
+    },
 
   	medicamento:{
-  		type:'string'
+  		type:'string',
+      columnName:'medicamento'
   	},
 
   	concentracao:{
-  		type:'string'
+  		type:'string',
+      columnName:'concentracao'
   	},
 
   	dosagem: {
   		type:'integer',
   		required: true,
+      columnName:'dosagem'
   	},
 
   	dosagem_tipo: {
   		type:'string',
-  		enum:['unidades','ml','colheres']
+  		enum:['unidades','ml','colheres'],
+      columnName:'dosagem_tipo'
   	},
 
   	turno_matutino:{
@@ -57,8 +71,13 @@ module.exports = {
   		enum:['vezes','dias','meses','anos']
   	},
 
+    status:{
+      type:'string'
+    },
+
   	consulta: {
-      model: 'consulta'
+      model: 'consulta',
+      columnName:'id_Consulta'
  	  }
 
   },

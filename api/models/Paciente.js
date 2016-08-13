@@ -7,63 +7,81 @@
 
 module.exports = {
 
-  attributes: {
+  //connection: 'mysqlServer',
+  tableName:'Paciente',
+  autoCreatedAt:false,
+  autoUpdatedAt:false,
+ 
+ attributes: {
   	nome: {
   		type:'string',
-  		required: true
+  		required: true,
+      columnName:'nome'
   	},
 
   	email: {
   		type:'email',
-  		required: true
+  		required: true,
+      columnName:'email'
   	},
 
     senha:{
-      type:'string'
+      type:'string',
+      columnName:'password'
     },
   	
   	rg: {
-  		type:'integer',
-  		size: 15
+  		type:'string',
+  		size: 20,
+      columnName:'rg'
   	},
   	
   	cpf:{
-  		type:'integer',
+  		type:'string',
   		size:11,
-  		primaryKey:true
+  		primaryKey:true,
+      columnName:'cpf'
   	},
   	
   	telefone:{
-  		type:'string'
+  		type:'string',
+      columnName:'telefone'
   	},
 
   	estado:{
   		type:'string',
-  		size: 2
+  		size: 2,
+      columnName:'estado'
   	},
 
   	cidade:{
-  		type:'string'
+  		type:'string',
+      columnName:'cidade'
   	},
 
   	bairro:{
-  		type:'string'
+  		type:'string',
+      columnName:'bairro'
   	},
 
   	rua:{
-  		type:'string'
+  		type:'string',
+      columnName:'rua'
   	},
 
   	numero:{
-  		type:'string'
+  		type:'interger',
+      columnName:'numero'
   	},
 
   	cep:{
-  		type:'string'
+  		type:'string',
+      columnName:'cep'
   	},
 
   	nascimento:{
-  		type:'date'
+  		type:'date',
+      columnName:'nascimento'
   	},
 
     consultas: {
@@ -72,7 +90,7 @@ module.exports = {
     }
 
   },
-
+/*
   novo: function(inputs, cb){
     Paciente.create({
       nome: inputs.nome,
@@ -94,6 +112,6 @@ module.exports = {
     Paciente.findOne({
       cpf: find.cpf
     }).exec(cb);
-  } 
+  } */
 };
 

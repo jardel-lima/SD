@@ -6,16 +6,34 @@
  */
 
 module.exports = {
+  tableName:'Local_trabalho',
+  autoCreatedAt:false,
+  autoUpdatedAt:false,
 
   attributes: {
+
+    id:{
+      type:'interger',
+      autoincrement:true,
+      primaryKey:true,
+      columnName:'id'
+    },
+
   	nome:{
   		type:"string",
+      columnName:'local_trabalho'
   	},
-
+    
   	// Add a reference to User
     owner: {
       collection: 'user',
-      via:'locaisDeTrabalho'
+      via:'localTrabalho',
+      through:'medicolocaltrabalho'
+    },
+
+    localConsulta: {
+      collection: 'consulta',
+      via: 'local'
     }
   },
 

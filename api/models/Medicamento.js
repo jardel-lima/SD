@@ -6,13 +6,20 @@
  */
 
 module.exports = {
-
+/*
   attributes: {
+  	
+  	id:{
+      type:'interger',
+      autoincrement:true,
+      primarykey:true
+    },
+
   	nome:{
   		type:'string',
   		required:true,
   		unique: true
   	}
-  }
+  }*/
 };
 

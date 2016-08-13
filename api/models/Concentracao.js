@@ -6,13 +6,19 @@
  */
 
 module.exports = {
-
+/*
   attributes: {
+  	id:{
+      type:'interger',
+      autoincrement:true,
+      primarykey:true
+    },
+
   	concentracao:{
   		type:'string',
   		required: true,
   		unique: true
   	}
-  }
+  }*/
 };
 
