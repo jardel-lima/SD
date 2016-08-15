@@ -14,7 +14,7 @@ module.exports = {
 
     id:{
       type:'interger',
-      autoincrement:true,
+      autoIncrement:true,
       primaryKey:true,
       columnName:'id'
     },
@@ -25,35 +25,65 @@ module.exports = {
   	},
     
   	// Add a reference to User
-    owner: {
+    medicos: {
       collection: 'user',
-      via:'localTrabalho',
+      via:'localtrabalho',
       through:'medicolocaltrabalho'
     },
 
-    localConsulta: {
+    /*localConsulta: {
       collection: 'consulta',
       via: 'local'
-    }
+    }*/
   },
 
-  addLocalTrabalho: function(input){
+  addLocalTrabalho: function(input, res){
   	console.log("Add Local de Trabalho");
-  	LocalDeTrabalho.findOne({nome:input.localtrabalho}).exec( function(err,foundLocalTrabalho){
+  	LocalDeTrabalho.findOne({nome:input.nome})
+    .exec( function(err,foundLocalTrabalho){
   		if (err) {
     		return res.negotiate(err);
   		}
 
-  		console.log(foundLocalTrabalho);
+  		console.log("Found Local");
+      console.log(foundLocalTrabalho);
+      console.log(input.user);
 
   		if(foundLocalTrabalho){
-  			input.user.locaisDeTrabalho.add(foundLocalTrabalho.id);
+  			MedicoLocalTrabalho.addMedicoLocalTrabalho({
+          local:foundLocalTrabalho.id,medico:input.user.cpf},
+          function(err, register){
+            if(err)
+              return res.json("ERROR 1:"+err);
+            return res.redirect("/");
+          });
   		}
   		else{
-  			input.user.locaisDeTrabalho.add({nome:input.localtrabalho});
-  		}
+        LocalDeTrabalho.create({nome:input.nome})
+        .exec(function(err, local){
+          if(err)
+            return res.negotiate(err);
+          console.log("Create Local"+local)
 
-  		input.user.save(function(err) {});
+         // LocalDeTrabalho.findOne({nome:input.nome})
+          //.exec(function(err, register){
+             // if(err)
+               // return res.negotiate();
+
+          MedicoLocalTrabalho.addMedicoLocalTrabalho({medico:input.user.cpf,
+          local:local.id},
+            function(err, register){
+              console.log(err);
+              if(err)
+                return res.negotiate();
+              return res.redirect("/");
+          });
+         // });
+
+        });
+
+      }
+  		
   	});
   }
 };

@@ -14,7 +14,7 @@ module.exports = {
 
     id:{
       type:'interger',
-      autoincrement:true,
+      autoIncrement:true,
       primaryKey:true,
       columnName:'id'
     },
@@ -25,30 +25,63 @@ module.exports = {
   	},
 
   	// Add a reference to User/*
-    owners: {
+    medicos: {
       collection: 'user',
       via:'especialidade',
       through:'medicoespecialidade'
     }
   },
-/*
-  addEspecialidade: function(input){
+
+
+  addEspecialidade: function(input, res){
   	console.log("Add Especialidade");
-  	Especialidade.findOne({nome:input.especialidade}).exec( function(err,foundEspecialidade){
-  		if (err) {
-    		return res.negotiate(err);
+  	Especialidade.findOne({nome:input.especialidade})
+    .exec( function(err,foundEspecialidade){
+  	  if (err) {
+    		return null;
   		}
 
-  		console.log(foundEspecialidade);
+  		console.log('Found Especialidade: '+foundEspecialidade);
 
   		if(foundEspecialidade){
   			
-  			input.user.especialidades.add(foundEspecialidade.id);
+        MedicoEspecialidade.addMedicoEspecialidade(
+          {especialidade: foundEspecialidade.id,
+          medico: input.user.cpf}, 
+          function(err, created){
+            if(err)
+              return res.json("Error1:"+err);
+            // return res.redirect("/");
+        });
+
   		}
   		else{
-  			input.user.especialidades.add({nome:input.especialidade});
-  		}
+  			
+        Especialidade.create({nome:input.especialidade})
+        .exec(function(err, createEspecialidade){
+          if (err){
+            return res.negotiate(err);
+          }
+          
+          console.log('Create Especialidade');
+          console.log(createEspecialidade.id);
+        
+        
+          MedicoEspecialidade.addMedicoEspecialidade({especialidade: createEspecialidade.id,
+          medico: input.user.cpf}, 
+          function(err, created){
+            if(err)
+              return res.json("Error2:"+err);
+            
+          });
+
+  
+
+        
+        });
+
+  	  }
   	});
-  }*/
+  }
 };
 

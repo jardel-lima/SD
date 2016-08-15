@@ -81,11 +81,29 @@
 						<textarea style="width: 500px; height: 150px; padding-left:30px;" class="form-control" ng-model="cDiag" ></textarea>
 					</div>
 				</div>
-			</di>
+			</div>
 		</div>
 		</br>
+		<div class='row'>
+			<div class="col-md-12">
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon">Data Revisão</span>  
+					  	<input ng-model="rDate" class="form-control input-md" type="text">
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon">Fazer Acompanhamento</span>  
+					  	<input ng-model="acomp" class="form-control input-md" type="checkbox">
+					</div>
+				</div>
+			</div>
+		</div>
 	</fieldset>
-	</div> </br>
+	
+	 </br>
 	<div class="row">
 		<div class="col-md-4">
 	  			<button type="submit" class="btn btn-default" ng-click="cSalvar()">Salvar</button></br> </br>

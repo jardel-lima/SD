@@ -20,6 +20,7 @@ module.exports = {
 		cpf:{
 			type:'string',
 			size:11,
+			required: true,
 			primaryKey: true,
 			columnName:'cpf'
 		},
@@ -76,6 +77,7 @@ module.exports = {
 		User.create({
 			name: inputs.name,
 			email: inputs.email,
+			cpf:inputs.cpf,
 			// TODO: But encrypt the password first
 			password: inputs.password
 		})

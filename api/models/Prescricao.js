@@ -14,7 +14,7 @@ module.exports = {
   attributes: {
     id:{
       type:'interger',
-      autoincrement:true,
+      autoIncrement:true,
       primarykey:true,
       columnName:'id'
     },

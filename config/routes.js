@@ -49,7 +49,8 @@ module.exports.routes = {
   
   'get /logout': 'UserController.logout',
   'get /consultas':'LoginController.consultas',
-  'get /nova_consulta':'LoginController.nova_consulta'
+  'get /nova_consulta':'LoginController.nova_consulta',
+  'get /get_consultas':'ConsultaController.getConsultas'
 
 
   /***************************************************************************

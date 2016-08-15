@@ -13,7 +13,7 @@ module.exports = {
   attributes: {
   	id:{
       type:'interger',
-      autoincrement:true,
+      autoIncrement:true,
       primaryKey:true,
       columnName:'id'
     },
@@ -28,6 +28,17 @@ module.exports = {
   		required:true,
       columnName:'data_C'
   	},
+
+    data_revisao:{
+      type:'date',
+      columnName:'data_CR'
+    }, 
+
+    acompanhamento:{
+      type:'boolean',
+      columnName:'acomp'
+
+    },   
 
   	temperatura:{
   		type:'float',
@@ -63,11 +74,11 @@ module.exports = {
       model: 'paciente',
       columnName:'Paciente_cpf'
     },
-/*
+
     prescricoes: {
         collection: 'prescricao',
         via: 'consulta'
-    },*/
+    },
 
     medico:{
       model:'user',
@@ -86,7 +97,10 @@ module.exports = {
       obs: inputs.obs,
       diag: inputs.diag,
       medico: inputs.medico,
-      paciente: inputs.paciente
+      paciente: inputs.paciente,
+      data_revisao: inputs.date_r,
+      acomp:inputs.acomp,
+      status:'A INICIAR'
     }).exec(cb);
   }
 

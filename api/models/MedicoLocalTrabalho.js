@@ -14,13 +14,20 @@ module.exports = {
   attributes: {
   	medico:{
   		model:'user',
-  		columnName:'Medico_cpf'
+  		columnName:'Medico_cpf',
+      primaryKey:true,
   	},
-  	localTrabalho:{
+  	localtrabalho:{
   		model:'localdetrabalho',
-  		columnName:'id'
+  		columnName:'id',
+      primaryKey:true,
   	}
 
+  },
+
+  addMedicoLocalTrabalho: function(input,cb){
+    console.log(input);
+    MedicoLocalTrabalho.create({localtrabalho:input.local,medico:input.medico}).exec(cb);
   }
 };
 

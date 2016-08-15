@@ -10,7 +10,7 @@ module.exports = {
 	novo: function( req, res){
 		console.log("Novo Paciente");
 		console.log(req.allParams());
-		
+		console.log(typeof(parseInt(req.param('pNumero'))));
 		Paciente.novo({
 		  nome: req.param('pNome'),
 	      email: req.param('pEmail'),
@@ -33,7 +33,7 @@ module.exports = {
 			}
 				
 			if (req.wantsJSON) {
-				return res.ok({paciente_id:paciente.id});
+				return res.json(200,{paciente_id:paciente.cpf});
 			}	
 
 		});
@@ -43,7 +43,7 @@ module.exports = {
 		console.log("Localizar Paciente");
 		console.log(req.allParams());
 		Paciente.localizar({
-			cpf: parseInt(req.param('pCpf'))
+			cpf:req.param('pCpf')
 		}, function(err, paciente){
 			if (err) {
 				console.log("Erro: "+err);

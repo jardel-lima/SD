@@ -70,7 +70,7 @@ module.exports = {
   	},
 
   	numero:{
-  		type:'interger',
+  		type:'integer',
       columnName:'numero'
   	},
 
@@ -90,7 +90,7 @@ module.exports = {
     }
 
   },
-/*
+
   novo: function(inputs, cb){
     Paciente.create({
       nome: inputs.nome,
@@ -112,6 +112,6 @@ module.exports = {
     Paciente.findOne({
       cpf: find.cpf
     }).exec(cb);
-  } */
+  } 
 };
 

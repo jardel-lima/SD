@@ -10,19 +10,28 @@ module.exports = {
   tableName:'Especialidade_has_Medico',
   autoCreatedAt:false,
   autoUpdatedAt:false,
+  //junctionTable: true,
 
   attributes: {
   	medico:{
   		model:'user',
   		columnName:'Medico_cpf',
-  		//primarykey:true,
+      //via:'especialidade',
+  		primaryKey:true,
   		
   	},
   	especialidade:{
   		model:'especialidade',
   		columnName:'id',
-  		//primarykey:true,
+      //via:'medico',
+  		primaryKey:true,
   	}
+  },
+
+  addMedicoEspecialidade : function(input,cb){
+    MedicoEspecialidade.create({medico : input.medico, especialidade: input.especialidade})
+    .exec(cb);
   }
+
 };
 

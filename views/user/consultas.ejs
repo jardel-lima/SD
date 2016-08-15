@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div ng-app="consultas" ng-controller="consultasController">
+<div ng-app="consultas"  ng-controller="consultasController">
 	<div class="row">
 		<div class="col-md-12">
 
@@ -10,6 +10,21 @@
 							<thead>
 								<th style='width:5%;'>N</th> <th style='width:30%;'>Paciente</th> <th style='width:25%;'>Data da Última Consulta</th> <th style='width:25%';>Data Nova Consulta</th> <th style='width:15%;'>Acompanhamento</th>     
 							</thead>
+							<tr ng-repeat = "consulta in consultaList">
+								<td> {{consultaList.indexOf(consulta)}}</td>
+								<td>{{consulta.paciente.nome}}</td>
+								<td>{{consulta.data | date:'dd/MM/yyyy'}}</td>
+								<td>{{consulta.data_revisao | date:'dd/MM/yyyy'}}</td>
+								<td>
+									<div ng-if=consulta.acompanhamento>
+										<input type='checkbox' checked>
+									<div>
+									<div ng-if= (consulta.acompanhamento == 'false')>
+										<input type='checkbox'>
+									<div>
+
+								</td>
+							</tr>
 							<tbody>
 							</tbody>
 			   		</table>
@@ -26,15 +41,34 @@
 </div>
 <script>
 var app = angular.module('consultas',[]);
+//var consultasList = [1,2,3,5];
 //var dateFormat = require('dateformat');
 app.controller('consultasController', function($scope,$http,$filter){
 	
+	$scope.consultaList = [];
 	$scope.nova_consulta = function(){
 		console.log("Nova Consulta");
 		location.assign("http://localhost:1337/nova_consulta")
 		console.log("OK");
 				
 	};
+
+	init = function(){
+		$http.get('/get_consultas')
+		.success(function(data, status, headers, config){
+			console.log(data);
+			console.log(data[0]);
+			var paciente = data[0].paciente ;
+			console.log(paciente.nome);
+			$scope.consultaList = data;
+		})
+		.error(function(data, status, headers, config) {
+			console.log(data);
+
+		});
+	};
+
+	init();
 
 });
 
