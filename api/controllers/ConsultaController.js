@@ -56,6 +56,30 @@ module.exports = {
 				return res.json(err);
 			return res.json(records);
 		});
-	}
+	},
+
+	getConsultaInfo: function(req, res){
+		console.log("Getting Consulta Server");
+		Consulta.findOne({id: req.param('id')}).populate('paciente')
+		.populate('local')
+		.exec(function(err,record){
+			console.log(record)
+			if(err)
+				return res.json(err);
+
+			Prescricao.find({consulta: record.id})
+			.exec(function(err, record_p){
+				if(err)
+					return res.json(err);
+				record.prescricoes = record_p;
+				var data = {consulta:record,prescricoes:record_p};
+				console.log("Adding prescricoes");
+				console.log(data);
+				return res.json(data);
+			});
+			
+		});
+	},
+
 };
 

@@ -3,47 +3,84 @@
 	<div class="col-md-12">
 
 		<div class="panel panel-primary" style =" margin: auto; border-color:green;">
-		 	<div class="panel-heading" style="background-color:green">Nova Consulta</div>
+		 	
+		 	<div class="panel-heading" style="background-color:green">Nova Consulta </div>
 		  	<div class="panel-body">
-		  		<div class="panel panel-primary">
-				 	<div class="panel-heading" style="background-color:green">Paciente</div>
-				  	<div class="panel-body">
-				  		<div class="col-md-12">
-				  			<% include consultas/paciente %>
-					   	</div>
+		  		<div class="panel-group">
+			  		<div class="panel panel-primary" style ="  border-color:green;">
+					 	<div class="panel-heading" style="background-color:green" ng-click="collapsePanel('panelPaciente','iconPaciente')">Paciente <span id="iconPaciente" class="glyphicon glyphicon-menu-up" aria-hidden="true"></span> </div>
+					  	<div id="panelPaciente" class="panel-body panel-collapse collapse in">
+					  		<div class="col-md-12">
+					  			<% include consultas/paciente %>
+						   	</div>
+						</div>
 					</div>
 				</div>
-		   		<div class="panel panel-primary">
-				 	<div class="panel-heading" style="background-color:green">Consulta</div>
-				  	<div class="panel-body">
-				  		<div class="col-md-12">
-					  		<% include consultas/consulta %>
-					   	</div>
+				<div class="panel-group">
+					<div class="panel panel-primary" style =" border-color:green;">
+					 	<div class="panel-heading" style="background-color:green" ng-click="collapsePanel('panelConsulta','iconConsulta')">Consulta <span id="iconConsulta" class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>
+					  	<div id="panelConsulta" class="panel-body panel-collapse collapse in">
+					  		<div class="col-md-12">
+						  		<% include consultas/consulta %>
+						   	</div>
+						</div>
 					</div>
 				</div>
-				<div class="panel-grup" role="tablist" aria-multiselectable="true">
-				 	<div class="panel-heading" style="background-color:green">Prescrições</div>
-				  	<div class="panel-body">
-				  		<div class="col-md-12">
-					  		<% include consultas/prescricao %>
-					   	</div>
+		   		
+				<!--<div class="panel-grup" role="tablist" aria-multiselectable="true" style ="border-color:green;">-->
+				<div class="panel-group">
+					<div class="panel panel-primary" style =" border-color:green;">
+					 	<div class="panel-heading" style="background-color:green;" ng-click="collapsePanel('panelPrescricoes','iconPrescricoes')">Prescrições <span id="iconPrescricoes" class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>
+					  	<div id="panelPrescricoes" class="panel-body panel-collapse collapse in">
+					  		<div class="col-md-12">
+						  		<% include consultas/prescricao %>
+						   	</div>
+						</div>
 					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+				  		<button  class="btn btn-default" ng-click="edit = !edit; update = true;" ng-disabled='!edit' ng-hide='!edit'>Editar</button>
+				  	
+				  		<button  class="btn btn-default" ng-click="" ng-hide='!update'>
+				  			Atualizar</button>
+				  	
+				  		<button  class="btn btn-default" ng-click="edit = !edit; update = false	"  ng-hide='!update'>Cancelar</button>
+					  	
+				  	</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 <script>
-var app = angular.module('novaConsulta',[]);
+var app = angular.module('novaConsulta',['ngCookies']);
 //var dateFormat = require('dateformat');
-app.controller('novaConsultaController', function($scope,$http,$filter){
+app.controller('novaConsultaController', function($scope,$http,$filter,$cookies){
 	
 	var paciente_cpf = null;
 	var consulta_id = null;
 	var date = new Date();
+	$scope.edit = false;
+	$scope.update = false;
 
 	$scope.cData = $filter('date')( date ,'dd/MM/yyyy');
 	$scope.rDate  = $filter('date')(date.setMonth(date.getMonth()+6),'dd/MM/yyyy');
+
+	$scope.collapsePanel = function(panelId, iconId){
+		var element = document.getElementById(panelId);
+		element.classList.toggle('in');
+
+		if(element.classList.contains('in')){
+			document.getElementById(iconId).classList.remove("glyphicon-menu-down");
+			document.getElementById(iconId).classList.add("glyphicon-menu-up");
+		}else{
+			document.getElementById(iconId).classList.remove("glyphicon-menu-up");
+			document.getElementById(iconId).classList.add("glyphicon-menu-down");
+		}
+	};
 
 	$scope.pSalvar = function(){
 	
@@ -73,8 +110,8 @@ app.controller('novaConsultaController', function($scope,$http,$filter){
 					// when the response is available
 					//console.log(data);
 					console.log("Novo Paciente: 0K");
-					paciente_id = data.paciente_id;
-					console.log(paciente_id);
+					paciente_cpf = data.paciente_id;
+					console.log(paciente_cpf);
 				  }).
 				  error(function(data, status, headers, config) {
 					// called asynchronously if an error occurs
@@ -165,21 +202,21 @@ app.controller('novaConsultaController', function($scope,$http,$filter){
 				});
 	};
 
-	$scope.prAdcionar = function(){
-	
+	$scope.prAdcionar = function(id){
+		//console.log($scope['prMedicamento'+id]);
 		//console.log(date);
 		var parameters = JSON.stringify({ 
-			medicamento: $scope.prMedicamento,
-			concentracao: $scope.prConcentracao,
-			dosagem: $scope.prDosagem,
-			dosagem_tipo: $scope.prDosagemTipo,
-			turno_matutino: $scope.prMatutino,
-			turno_vespertino: $scope.prVespertino,
-			turno_noturno: $scope.prNoturno,
-			periodo: $scope.prPeriodo,
-			periodo_tipo: $scope.prPeriodoTipo,
-			duracao: $scope.prDuracao,
-			duracao_tipo: $scope.prDuracaoTipo,
+			medicamento: $scope['prMedicamento'+id],
+			concentracao: $scope['prConcentracao'+id],
+			dosagem: $scope['prDosagem'+id],
+			dosagem_tipo: $scope['prDosagemTipo'+id],
+			turno_matutino: $scope['prMatutino'+id]?true:false,
+			turno_vespertino: $scope['prVespertino'+id]?true:false,
+			turno_noturno: $scope['prNoturno'+id]?true:false,
+			periodo: $scope['prPeriodo'+id],
+			periodo_tipo: $scope['prPeriodoTipo'+id],
+			duracao: $scope['prDuracao'+id],
+			duracao_tipo: $scope['prDuracaoTipo'+id],
 			consulta: consulta_id
 		});
 
@@ -197,6 +234,93 @@ app.controller('novaConsultaController', function($scope,$http,$filter){
 					// or server returns response with an error status.
 					console.log("Erro!!!");
 				});
+	};
+
+	loadPaciente = function(data){
+		$scope.pNome = data.nome;
+		$scope.pEmail = data.email;
+		$scope.pRG = data.rg;
+		$scope.pCPF = data.cpf;
+		$scope.pTelefone = data.telefone;
+		$scope.pEstado = data.estado;
+		$scope.pCidade = data.cidade;
+		$scope.pBairro = data.bairro;
+		$scope.pRua = data.rua;
+		$scope.pNumero = data.numero;
+		$scope.pCEP = data.cep;
+		$scope.pNasc = $filter('date')(new Date(data.nascimento),'dd/MM/yyyy');
+	};
+
+	loadPrescricao = function(data, id){
+		//console.log(data);
+		//$scope['prMedicamento'+id] = "test";
+		$scope['prMedicamento'+id]=data.medicamento;
+		$scope['prConcentracao'+id] = data.concentracao;
+		$scope['prDosagem'+id] = data.dosagem;
+		$scope['prDosagemTipo'+id] = data.dosagem_tipo;
+		$scope['prMatutino'+id] = data.turno_matutino;
+		$scope['prVespertino'+id] = data.turno_vespertino;
+		$scope['prNoturno'+id] = data.turno_noturno;
+		$scope['prPeriodo'+id] = data.periodo;
+		$scope['prPeriodoTipo'+id] = data.periodo_tipo;
+		$scope['prDuracao'+id] = data.duracao;
+		$scope['prDuracaoTipo'+id] = data.duracao_tipo;
+	};
+
+	loadConsulta = function(consulta){
+		$scope.cLocal = consulta.local.nome;
+		$scope.pTemp = consulta.temperatura;
+		$scope.pPeso = consulta.peso;
+		$scope.pAlt = consulta.altura;
+		$scope.cObs = consulta.obs;
+		$scope.cDiag = consulta.diag;
+		$scope.rDate = $filter('date')(new Date(consulta.data_revisao),'dd/MM/yyyy');
+		$scope.acomp = consulta.acompanhamento;
+		$scope.cData = $filter('date')( new Date(consulta.data) ,'dd/MM/yyyy');
+}
+
+	loadData = function (id){
+		var parameters = JSON.stringify({ id:id});
+
+		$http.post("/get_consulta_info",parameters).
+		success(function(data, status, headers, config) {
+			console.log(data);
+			console.log("Load Consulta");
+			var consulta = data.consulta;
+
+			loadConsulta(data.consulta);
+
+			loadPaciente(consulta.paciente);
+
+			var presc_n = 0;
+
+			while(presc_n < data.prescricoes.length){
+				console.log(data.prescricoes[presc_n]);
+				loadPrescricao(data.prescricoes[presc_n], presc_n+1);
+				presc_n++;
+			}
+
+			
+		  }).
+		  error(function(data, status, headers, config) {
+			// called asynchronously if an error occurs
+			// or server returns response with an error status.
+			console.log("Login Error");
+			console.log(data);
+			//
+		  });
+
+	};
+	
+	init = function(){
+		var id = $cookies.get('consultaId');
+		console.log("id:"+id); 
+		if(id){
+			$cookies.remove('consultaId');
+			console.log("Getting Consulta")
+			$scope.edit = true;
+			loadData(id);
+		}
 	};
 
 	iniciarPacienteTest = function(){
@@ -223,8 +347,10 @@ app.controller('novaConsultaController', function($scope,$http,$filter){
 		$scope.cDiag = 'Diagnostico';
 	};
 
+	init();
+
 	//iniciarConsultaTest();
-	iniciarPacienteTest();
+	//iniciarPacienteTest();
 
 });
 

@@ -6,31 +6,41 @@
 			<div class="panel panel-primary" style =" margin: auto; border-color:green;">
 			  <div class="panel-heading" style="background-color:green">Consultas</div>
 			  <div class="panel-body">
-			   		<table class= "table table-striped table-bordered table-hover">
-							<thead>
-								<th style='width:5%;'>N</th> <th style='width:30%;'>Paciente</th> <th style='width:25%;'>Data da Última Consulta</th> <th style='width:25%';>Data Nova Consulta</th> <th style='width:15%;'>Acompanhamento</th>     
-							</thead>
-							<tr ng-repeat = "consulta in consultaList">
-								<td> {{consultaList.indexOf(consulta)}}</td>
-								<td>{{consulta.paciente.nome}}</td>
-								<td>{{consulta.data | date:'dd/MM/yyyy'}}</td>
-								<td>{{consulta.data_revisao | date:'dd/MM/yyyy'}}</td>
-								<td>
-									<div ng-if=consulta.acompanhamento>
-										<input type='checkbox' checked>
-									<div>
-									<div ng-if= (consulta.acompanhamento == 'false')>
-										<input type='checkbox'>
-									<div>
-
-								</td>
-							</tr>
-							<tbody>
-							</tbody>
-			   		</table>
+			  		<div class="row">
+			  			<div class="col-md-12">
+						  	<div class="col-md-8">	
+						  		<div class="input-group"  style="width:100%;">
+									<span id="localiar_addon"class="input-group-addon glyphicon glyphicon-search"></span>  
+								  	<input style="width:90%;" ng-model="lPaciente" class="form-control input-md" required type="text" aria-describedby="localiar_addon">
+								</div>
+							</div>
+					  	</div>
+					</div>
+				</br>
+					<div class="row">
+						<div class="col-md-12">
+					   		<table class= "table table-striped table-bordered table-hover">
+									<thead>
+										<th style='width:5%;'>N</th> <th style='width:30%;'>Paciente</th> <th style='width:25%;'>Data da Última Consulta</th> <th style='width:25%';>Data Nova Consulta</th> <th style='width:15%;'>Acompanhamento</th>     
+									</thead>
+									<tr  class="animate-repeat" ng-repeat="consulta in consultaList | filter: lPaciente | orderBy: 'data' : true " id={{consulta.id}} ng-click="loadConsulta(consulta.id)">
+										<!--<td>{{consulta}}</td>-->
+											<td> {{consulta.id}}</td>
+											<td>{{consulta.paciente.nome}}</td>
+											<td>{{consulta.data | date:'dd/MM/yyyy'}}</td>
+											<td>{{consulta.data_revisao ? consulta.data_revisao : 'NÃO DEFINIDA' | date:'dd/MM/yyyy'}}</td>
+											<td>
+												<span>{{consulta.acompanhamento ? 'SIM' : 'NÃO'}} </span>
+											</td>
+									</tr>
+									<tbody>
+									</tbody>
+					   		</table>
+					   	</div>
+					</div>
 				</div>
 			</div>
-		</div class="col-md-12">
+		</div>
 	</div>
 	</br>
 	<div class="row">
@@ -40,10 +50,10 @@
 	</div>
 </div>
 <script>
-var app = angular.module('consultas',[]);
+var app = angular.module('consultas',['ngCookies']);
 //var consultasList = [1,2,3,5];
 //var dateFormat = require('dateformat');
-app.controller('consultasController', function($scope,$http,$filter){
+app.controller('consultasController', /*[/*'$cookies','$http',/*'$filter','$scope', */function($scope,$http,$cookies){
 	
 	$scope.consultaList = [];
 	$scope.nova_consulta = function(){
@@ -52,15 +62,21 @@ app.controller('consultasController', function($scope,$http,$filter){
 		console.log("OK");
 				
 	};
+	$scope.loadConsulta = function(id){
+		console.log(id);
+		$cookies.put('consultaId',id);
+		location.assign("http://localhost:1337/nova_consulta");
+	}
 
 	init = function(){
-		$http.get('/get_consultas')
+		$http.post('/get_consultas')
 		.success(function(data, status, headers, config){
 			console.log(data);
 			console.log(data[0]);
 			var paciente = data[0].paciente ;
 			console.log(paciente.nome);
 			$scope.consultaList = data;
+			console.log($scope.consultaList);	
 		})
 		.error(function(data, status, headers, config) {
 			console.log(data);

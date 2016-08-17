@@ -38,6 +38,9 @@ module.exports.routes = {
   'post /nova_consulta': 'ConsultaController.nova', 
   'post /pesquisar_paciente': 'PacienteController.localizar',
   'post /adcionar_prescricao': 'PrescricaoController.adcionar',
+  'post /get_consultas':'ConsultaController.getConsultas',
+  'post /get_consulta_info':'ConsultaController.getConsultaInfo',
+
   'get /': 'LoginController.login',
   'get /login': 'LoginController.login',
   'get /signup': { view: 'user/signup',
@@ -49,8 +52,8 @@ module.exports.routes = {
   
   'get /logout': 'UserController.logout',
   'get /consultas':'LoginController.consultas',
-  'get /nova_consulta':'LoginController.nova_consulta',
-  'get /get_consultas':'ConsultaController.getConsultas'
+  'get /nova_consulta':'LoginController.nova_consulta'
+  
 
 
   /***************************************************************************

@@ -7,7 +7,7 @@
 	 	<div class="col-md-4">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>CPF</span>
-		    	<input type="text" class="form-control" ng-model="pCPF" required>
+		    	<input type="text" class="form-control" ng-model="pCPF" required ng-disabled='{{edit}}'>
 		  	</div>
 		</div>
 
@@ -15,7 +15,7 @@
 		
 
 		<div class="col-md-4">
-  			<button type="submit" class="btn btn-default" ng-click="pLocalizar()">Pesquisar</button></br> </br>
+  			<button type="submit" class="btn btn-default" ng-click="pLocalizar()" ng-disabled='edit' ng-hide='edit'>Pesquisar</button></br> </br>
   		</div>
   	</div>
   	<div class='row'>
@@ -24,7 +24,7 @@
 	 	
 	 	<div class="input-group" style="width:100%;">
 	    	<span class='input-group-addon'>Nome</span>
-	    	<input type="text" class="form-control" ng-model="pNome" required>
+	    	<input type="text" class="form-control" ng-model="pNome" required ng-disabled='edit'>
 	  	</div>
 
 		</div>
@@ -33,7 +33,7 @@
 		  	<div class="input-group"  style="width:100%;">
 
 		    	<span class='input-group-addon'>Email</span>
-		    	<input type="email" class="form-control" ng-model="pEmail" required>
+		    	<input type="email" class="form-control" ng-model="pEmail" required ng-disabled='edit'>
 
 		  	</div>
 		 </div>
@@ -46,7 +46,7 @@
   		<div class="col-md-4">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>RG</span>
-		    	<input type="text" class="form-control" ng-model="pRG" required>
+		    	<input type="text" class="form-control" ng-model="pRG" required ng-disabled='edit'>
 		  	</div>
 		</div>
 
@@ -55,7 +55,7 @@
 		<div class="col-md-4">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>Telefone</span>
-		    	<input type="text" class="form-control" ng-model="pTelefone">
+		    	<input type="text" class="form-control" ng-model="pTelefone" ng-disabled='edit'>
 		  	</div>
 		</div>
 	</div>
@@ -65,7 +65,7 @@
 		<div class="col-md-2">
 		  	<div class="input-group">
 		    	<span class='input-group-addon'>Estado</span>
-		    	<select class="form-control" ng-model="pEstado" required>
+		    	<select class="form-control" ng-model="pEstado" required ng-disabled='edit'>
 		    		<option value="AC">AC</option>
 		    		<option value="AL">AL</option>
 		    		<option value="AP">AP</option>
@@ -99,21 +99,21 @@
 		<div class="col-md-3">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>Cidade</span>
-		    	<input type="text" class="form-control" ng-model="pCidade" required>
+		    	<input type="text" class="form-control" ng-model="pCidade" required ng-disabled='edit'>
 		  	</div>
 		</div>
 
 		<div class="col-md-3">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>Bairro</span>
-		    	<input type="text" class="form-control" ng-model="pBairro" required>
+		    	<input type="text" class="form-control" ng-model="pBairro" required ng-disabled='edit'>
 		  	</div>
 		</div>
 		
 		<div class="col-md-4">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>Rua</span>
-		    	<input type="text" class="form-control" ng-model="pRua" required>
+		    	<input type="text" class="form-control" ng-model="pRua" required ng-disabled='edit'>
 		  	</div>
 		</div>
 	</div>
@@ -122,26 +122,26 @@
 		<div class="col-md-4" >
 			<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>Número</span>
-		    	<input type="number" class="form-control" ng-model="pNumero" required>
+		    	<input type="number" class="form-control" ng-model="pNumero" required ng-disabled='edit'>
 		  	</div>
 		</div>
 		<div class="col-md-4">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>CEP</span>
-		    	<input type="text" class="form-control" ng-model="pCEP" required>
+		    	<input type="text" class="form-control" ng-model="pCEP" required ng-disabled='edit'>
 		  	</div>
 		</div>
 		<div class="col-md-4">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>Nascimento</span>
-		    	<input type="text" class="form-control" ng-model="pNasc" required>
+		    	<input type="text" class="form-control" ng-model="pNasc" required ng-disabled='edit'>
 		  	</div>
 		</div>
 	  	
 	</div> </br>
 	<div class="row">
 		<div class="col-md-4">
-	  			<button type="submit" class="btn btn-default" ng-click="pSalvar()">Salvar</button></br> </br>
+	  			<button type="submit" class="btn btn-default" ng-click="pSalvar()" ng-disabled='edit' ng-hide='edit'>Salvar</button></br> </br>
 	  	</div>
 	</div>
 </form>

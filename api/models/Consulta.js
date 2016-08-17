@@ -100,7 +100,7 @@ module.exports = {
       paciente: inputs.paciente,
       data_revisao: inputs.date_r,
       acomp:inputs.acomp,
-      status:'A INICIAR'
+      status:'A INICIAR'  
     }).exec(cb);
   }
 
