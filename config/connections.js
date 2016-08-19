@@ -49,12 +49,7 @@ module.exports.connections = {
   },
 
   mysqlRDSServer: {
-     adapter: 'sails-mysql',
-     host: 'medicamente-bd.ctnwnrrpnlth.us-west-2.rds.amazonaws.com',
-     user: 'Medicamente_BD', //optional
-     password: 'sd_medicamente_2016', //optional
-     database: 'Medicamente' //optional
-  },
+    
 
   /***************************************************************************
   *                                                                          *
