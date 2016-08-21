@@ -56,6 +56,7 @@ var app = angular.module('consultas',['ngCookies']);
 app.controller('consultasController', /*[/*'$cookies','$http',/*'$filter','$scope', */function($scope,$http,$cookies){
 	
 	$scope.consultaList = [];
+	
 	$scope.nova_consulta = function(){
 		console.log("Nova Consulta");
 		location.assign("http://localhost:1337/nova_consulta")
@@ -71,12 +72,15 @@ app.controller('consultasController', /*[/*'$cookies','$http',/*'$filter','$scop
 	init = function(){
 		$http.post('/get_consultas')
 		.success(function(data, status, headers, config){
-			console.log(data);
-			console.log(data[0]);
-			var paciente = data[0].paciente ;
-			console.log(paciente.nome);
-			$scope.consultaList = data;
-			console.log($scope.consultaList);	
+			
+			if(data.length>0){
+				console.log(data);
+				console.log(data[0]);
+				var paciente = data[0].paciente ;
+				console.log(paciente.nome);
+				$scope.consultaList = data;
+				console.log($scope.consultaList);		
+			}
 		})
 		.error(function(data, status, headers, config) {
 			console.log(data);

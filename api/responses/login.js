@@ -12,10 +12,12 @@ module.exports = function login(inputs) {
 	// Get access to `req` and `res`
 	var req = this.req;
 	var res = this.res;
+
+	var bcrypt = require('bcrypt');
 	// Look up the user
 	User.attemptLogin({
-		email: inputs.email,
-		password: inputs.password
+		email: inputs.email/*,
+		password: inputs.password*/
 		}, function (err, user) {
 			
 			//console.log(user);
@@ -40,20 +42,18 @@ module.exports = function login(inputs) {
 			else{
 				// "Remember" the user in the session
 				// Subsequent requests from this user agent will have `req.session.me` set.
-				console.log('Login Ok');
+				
 				//if(user)
-				req.session.me = user.cpf;
-				// If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
-				// send a 200 response letting the user agent know the login was successful.
-				// (also do this if no `successRedirect` was provided)
-				/*if (req.wantsJSON || !inputs.successRedirect) {
-					
-				}*/
-				// Otherwise if this is an HTML-wanting browser, redirect to /.
-				//return res.redirect(inputs.successRedirect);	
-				//return res.view(inputs.successRedirect);
-				//res.cookie("userId",user.id)
-				return res.ok();
+				console.log("User encrypt pass");
+				console.log(user.password);
+
+				if(bcrypt.compareSync(inputs.password, user.password)){
+					req.session.me = user.cpf;
+					console.log('Login Ok');
+					return res.ok();
+				}
+				
+				return res.badRequest("Invalid username/password");
 			}		
 	});
 };

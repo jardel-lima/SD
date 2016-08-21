@@ -29,7 +29,7 @@ module.exports = {
 
 			if (err) {
 				console.log("Erro: "+err);
-				return res.badRequest();
+				return res.json(400,err);
 			}
 				
 			if (req.wantsJSON) {

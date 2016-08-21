@@ -7,8 +7,7 @@
 
 module.exports = {
 	
-
-
+	
   /**
    * `UserController.login()`
    */
@@ -17,7 +16,13 @@ module.exports = {
   	console.log("Login");
   	console.log(req.allParams());
   	
-     return res.login({
+  	var bcrypt = require('bcrypt');
+  	var hash = bcrypt.hashSync(req.param('password').trim(), 10);
+	
+	console.log("Hash - login");
+    console.log(hash);
+
+	 return res.login({
 		email: req.param('email'),
 		password: req.param('password')
 		});
@@ -32,7 +37,7 @@ module.exports = {
 	// Subsequent requests from this user agent will NOT have `req.session.me`.
 
 	req.session.me = null;
-	console.log('Logout')
+	console.log('Logout');
 	// If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
 	// send a simple response letting the user agent know they were logged out
 	// successfully.
@@ -56,15 +61,19 @@ module.exports = {
    */
   signup: function (req, res) {
 
-  	
+  	var bcrypt = require('bcrypt');
     // Attempt to signup a user using the provided parameters
     console.log("Signup");
     console.log(req.allParams());
+    
+	var hash = bcrypt.hashSync(req.param('senha'), 10);
+	console.log("Hash -created");
+    console.log(hash);
 
 	User.signup({
 	name: req.param('nome'),
 	email: req.param('email'),
-	password: req.param('senha'),
+	password: hash,
 	cpf:req.param('cpf')
 	}, function (err, user) {
 	// res.negotiate() will determine if this is a validation error
@@ -100,6 +109,16 @@ module.exports = {
 
  		}
 	);
+	},
+
+	getLocalTrabalho: function(req, res){
+		User.findOne({cpf:req.session.me}).populate('locaisDeTrabalho').exec(
+			function(err,user){
+				console.log(user);
+				console.log(user.locaisDeTrabalho);
+
+				return res.json(200,user.locaisDeTrabalho);
+			});
 	}
 };
 

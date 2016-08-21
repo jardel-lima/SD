@@ -10,7 +10,7 @@
 						
 						    <div class="input-group">
 						      <span class="input-group-addon">Nome</span>
-						      <input  id="prependedtext" name="prependedtext" class="form-control"  required type="text" ng-model="prMedicamento1" ng-disabled='edit'>
+						      <input  id="prMedicamento1" class="form-control"  required type="text" ng-model="prMedicamento1" ng-disabled='edit'>
 						    </div>			
 						
 					</div>
@@ -19,7 +19,7 @@
 						  
 						    <div class="input-group">
 						      <span class="input-group-addon">Concentração</span>
-						      <input id="concInput" name="concInput" class="form-control" ng-model="prConcentracao1" type="text" ng-disabled='edit'>
+						      <input id="prConcentracao1" class="form-control" ng-model="prConcentracao1" type="text" ng-disabled='edit'>
 						    </div>
 						
 					</div>
@@ -33,7 +33,7 @@
 						<div class="col-md-2">
 						    <div class="input-group">
 						      <span class="input-group-addon">Dosagem</span>
-						      <input id="dosInput" name="dosInput" class="form-control" required ng-model="prDosagem1" type="text" ng-disabled='edit'>
+						      <input id="prDosagem1"  class="form-control" required ng-model="prDosagem1" type="text" ng-disabled='edit'>
 						    </div>
 						    
 						</div>
@@ -41,7 +41,7 @@
 						<!-- Select Basic -->
 						  
 						<div class="col-md-2">
-						    <select id="selectbasic" ng-model="prDosagemTipo1" class="form-control" ng-disabled='edit'>
+						    <select id="prDosagemTipo1" ng-model="prDosagemTipo1" class="form-control" ng-disabled='edit'>
 						      <option value="unidades">unidades</option>
 						      <option value="ml">ml</option>
 						      <option value="colheres">colheres</option>
@@ -54,15 +54,15 @@
 							  <label class="col-md-2 control-label">Turno:</label>
 							  <div class="col-md-6">
 							    <label class="checkbox-inline">
-							      <input ng-model="prMatutino1" type="checkbox" ng-disabled='edit'>
+							      <input id="prMatutino1" ng-model="prMatutino1" type="checkbox" ng-disabled='edit'>
 							      Matutino
 							    </label>
 							    <label class="checkbox-inline" >
-							      <input ng-model="prVespertino1" type="checkbox" ng-disabled='edit'>
+							      <input id="prVespertino1" ng-model="prVespertino1" type="checkbox" ng-disabled='edit'>
 							      Vespertino
 							    </label>
 							    <label class="checkbox-inline">
-							      <input ng-model="prNoturno1" type="checkbox" ng-disabled='edit'>
+							      <input id="prNoturno1" ng-model="prNoturno1" type="checkbox" ng-disabled='edit'>
 							      Noturno
 							    </label>
 							  </div>
@@ -80,7 +80,7 @@
 						    <!-- Prepended text-->
 						    <div class="input-group">
 						      <span class="input-group-addon">A cada</span>
-						      <input ng-model="prPeriodo1" class="form-control" required type="text" ng-disabled='edit'>
+						      <input id="prPeriodo1" ng-model="prPeriodo1" class="form-control" required type="text" ng-disabled='edit'>
 						    </div>
 						    
 						  </div>
@@ -89,7 +89,7 @@
 						<!-- Select Basic -->
 							<div class="form-group">
 							  
-							    <select id="selectbasic" ng-model="prPeriodoTipo1" class="form-control" ng-disabled='edit'>
+							    <select id="prPeriodoTipo1" ng-model="prPeriodoTipo1" class="form-control" ng-disabled='edit'>
 							      <option value="horas">horas</option>
 							      <option value="dias">dias</option>
 							      <option value="semanas">semanas</option>
@@ -103,7 +103,7 @@
 						 <div class="col-md-3">
 						    <div class="input-group">
 						      <span class="input-group-addon">Duração</span>
-						      <input ng-model="prDuracao1" class="form-control" required type="text" ng-disabled='edit'>
+						      <input id="prDuracao1" ng-model="prDuracao1" class="form-control" required type="text" ng-disabled='edit'>
 						    </div>
 						    
 						</div>
@@ -113,7 +113,7 @@
 							<div class="form-group">
 							 
 							  
-							    <select ng-model="prDuracaoTipo1" class="form-control" ng-disabled='edit'>
+							    <select id="prDuracaoTipo1" ng-model="prDuracaoTipo1" class="form-control" ng-disabled='edit'>
 							      <option value="vezes">vezes</option>
 							      <option value="dias">dias</option>
 							      <option value="meses">meses</option>
@@ -124,12 +124,23 @@
 
 					</div>
 				</div>
-				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group" >
+						  <label class="col-md-2 control-label">Observações</label>
+						  <div class="col-md-10">                     
+						    <textarea id="prObs1"style="width: 100%; height: 150px;" class="form-control" ng-model="prObs1" ng-disabled='edit'></textarea>
+						  </div>
+						</div>
+					</div>
+				</div>
 				<br> </br>
 				<div class="row">
-					<div class="col-md-4">
-			  			<button  class="btn btn-default" ng-click="prAdcionar(1)" ng-disabled='edit' ng-hide='edit'>Salvar</button>
-		  			</div>
+					<div class="col-md-12">
+			  			<button id="prSalvar1" class="btn btn-default" ng-click="prAdcionar(1)" ng-hide='edit || update'>Salvar</button>
+			  			<!--<button  class="btn btn-default" ng-click="" ng-hide='!update'>Atualizar</button>
+			  			<button id="prSalvar1" class="btn btn-default" ng-click="" ng-hide='!edit' hide >Apagar</button>-->
+			  		</div>	
 				</div>
 		   	</div>  	
 		</div>

@@ -6,8 +6,13 @@
 				<div class="col-md-8">
 					<div class="input-group"  style="width:100%;">
 
-						<span style="width:10%;" class="input-group-addon">Local da Consulta</span>  
-					  	<input style="width:90%;" ng-model="cLocal" class="form-control input-md" required type="text" ng-disabled='edit'>
+						<span style="width:10%;" class="input-group-addon">Local da Consulta</span> 
+						<select class="form-control" ng-model="cLocal" required ng-disabled='edit_consulta'> 
+							<option ng-repeat="local in localList" value='{{local.nome}}'>{{local.nome}}</option>
+						</select>
+					  	<!--
+					  	<input style="width:90%;" ng-model="cLocal" class="form-control input-md" required type="text" ng-disabled='edit_consulta'>
+					  -->
 
 					</div>
 				</div>
@@ -16,7 +21,7 @@
 				<div class="col-md-4">
 					<div class="input-group">
 						<span class="input-group-addon">Data</span>  
-					  	<input ng-model="cData" class="form-control input-md" type="text" ng-disabled='edit'>
+					  	<input ng-model="cData" class="form-control input-md" type="text" ng-disabled='edit_consulta'>
 					</div>
 				</div>
 			</div>
@@ -30,7 +35,7 @@
 					  
 					  <span class="input-group-addon">Temeratura</span>  
 					 
-					  <input ng-model="pTemp" class="form-control input-md" type="text" ng-disabled='edit'>
+					  <input ng-model="pTemp" class="form-control input-md" type="text" ng-disabled='edit_consulta'>
 					    
 					</div>
 				</div>
@@ -40,7 +45,7 @@
 					<div class="input-group">
 					  <span class="input-group-addon">Peso</span>  
 					  
-					  <input ng-model="pPeso" class="form-control input-md" type="text" ng-disabled='edit'>
+					  <input ng-model="pPeso" class="form-control input-md" type="text" ng-disabled='edit_consulta'>
 					    
 					</div>
 				</div>
@@ -51,7 +56,7 @@
 					<div class="input-group">
 					  <span class="input-group-addon">Altura</span>  
 					  
-					  <input ng-model="pAlt"class="form-control input-md" required type="text" ng-disabled='edit'>
+					  <input ng-model="pAlt"class="form-control input-md" required type="text" ng-disabled='edit_consulta'>
 					 
 					</div>
 				</div>
@@ -64,7 +69,7 @@
 				<div class="form-group" >
 				  <label class="col-md-3 control-label">Observações</label>
 				  <div class="col-md-9">                     
-				    <textarea style="width: 500px; height: 150px;" class="form-control" ng-model="cObs" ng-disabled='edit'></textarea>
+				    <textarea style="width: 500px; height: 150px;" class="form-control" ng-model="cObs" ng-disabled='edit_consulta'></textarea>
 				  </div>
 				</div>
 			</div>
@@ -78,7 +83,7 @@
 				  		<label class=" control-label">Diagnóstico</label>
 				  	</div>
 					<div class="col-md-9">                     
-						<textarea style="width: 500px; height: 150px; padding-left:30px;" class="form-control" ng-model="cDiag" ng-disabled='edit'></textarea>
+						<textarea style="width: 500px; height: 150px; padding-left:30px;" class="form-control" ng-model="cDiag" ng-disabled='edit_consulta'></textarea>
 					</div>
 				</div>
 			</div>
@@ -89,14 +94,14 @@
 				<div class="col-md-4">
 					<div class="input-group">
 						<span class="input-group-addon">Data Revisão</span>  
-					  	<input ng-model="rDate" class="form-control input-md" type="text" ng-disabled='edit'>
+					  	<input ng-model="rDate" class="form-control input-md" type="text" ng-disabled='edit_consulta'>
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="input-group">
 						<span class="input-group-addon">Fazer Acompanhamento</span>  
-					  	<input ng-model="acomp" class="form-control input-md" type="checkbox" ng-disabled='edit'>
+					  	<input ng-model="acomp" class="form-control input-md" type="checkbox" ng-disabled='edit_consulta'>
 					</div>
 				</div>
 			</div>
@@ -106,7 +111,11 @@
 	 </br>
 	<div class="row">
 		<div class="col-md-4">
-	  			<button type="submit" class="btn btn-default" ng-click="cSalvar()" ng-disabled='edit' ng-hide='edit'>Salvar</button></br> </br>
+	  			<button type="submit" class="btn btn-default" ng-click="cSalvar()"  ng-hide='edit_consulta || update_consulta'>Salvar</button><button class="btn btn-default" ng-click="update_consulta = true; edit_consulta = false;" ng-hide='!edit_consulta || update_paciente'>Editar</button>
+	  			<button class="btn btn-default" ng-click="update_consulta = false;" ng-hide='!update_consulta '>Atulizar</button>
+	  			<button class="btn btn-default" ng-click="update_consulta = false; edit_consulta = true;" ng-hide='!update_consulta'>Cancelar</button>
 	  	</div>
 	</div>
 </form>
+</br>
+</br>

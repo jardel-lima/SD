@@ -14,8 +14,11 @@ module.exports = {
    */
   login: function (req, res) {
 
-  	if(req.session.me != undefined)
-  		return res.redirect("/consultas");
+  	if(req.session.me != undefined){
+      console.log("User is logged Going to Consultas");
+      return res.redirect("/consultas");
+    }
+  		
 
  	return res.view("user/login");
 
@@ -34,10 +37,13 @@ module.exports = {
 
   consultas: function (req, res) {
 
-  	if(req.session.me != undefined)
-  		return res.view("user/consultas", {
+  	if(req.session.me != undefined){
+      console.log("Going to Consultas");
+      return res.view("user/consultas", {
                         layout: 'templates/template'
                     });
+    }
+  	
 
  	return res.redirect("/");
 

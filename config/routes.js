@@ -40,6 +40,7 @@ module.exports.routes = {
   'post /adcionar_prescricao': 'PrescricaoController.adcionar',
   'post /get_consultas':'ConsultaController.getConsultas',
   'post /get_consulta_info':'ConsultaController.getConsultaInfo',
+  'post /get_locais_trabalho':'UserController.getLocalTrabalho',
 
   'get /': 'LoginController.login',
   'get /login': 'LoginController.login',

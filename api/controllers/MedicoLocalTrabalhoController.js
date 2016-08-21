@@ -1,4 +1,4 @@
-/**
+	/**
  * MedicicoLocalTrabalhoController
  *
  * @description :: Server-side logic for managing Medicicolocaltrabalhoes
@@ -6,6 +6,6 @@
  */
 
 module.exports = {
-	
+
 };
 

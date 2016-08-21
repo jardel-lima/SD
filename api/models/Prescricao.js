@@ -75,6 +75,11 @@ module.exports = {
       type:'string'
     },
 
+    obs:{
+      type:'string',
+      columnName:'obs'
+    },
+
   	consulta: {
       model: 'consulta',
       columnName:'id_Consulta'
@@ -95,7 +100,8 @@ module.exports = {
       periodo_tipo: inputs.periodo_tipo,
       duracao: inputs.duracao,
       duracao_tipo: inputs.duracao_tipo,
-      consulta: inputs.consulta
+      consulta: inputs.consulta,
+      obs:inputs.obs
     }).exec(cb);
   }
 

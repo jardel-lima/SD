@@ -22,7 +22,8 @@ module.exports = {
 			periodo_tipo: req.param('periodo_tipo'),
 			duracao: req.param('duracao'),
 			duracao_tipo: req.param('duracao_tipo'),
-			consulta: req.param('consulta')
+			consulta: req.param('consulta'),
+			obs:req.param('obs')
 		}, function(err, prescricao){
 			if (err) {
 				console.log("Erro: "+err);

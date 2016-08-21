@@ -28,6 +28,7 @@ module.exports = {
 		email: {
 			type: 'email',
 			required: true,
+			unique: true,
 			columnName:'email'
 		},
 
@@ -95,9 +96,9 @@ module.exports = {
 	attemptLogin: function (inputs, cb) {
 		// Create a user
 		User.findOne({
-		email: inputs.email,
+		email: inputs.email/*,
 		// TODO: But encrypt the password first
-		password: inputs.password
+		password: inputs.password*/
 		})
 		.exec(cb);
 	}

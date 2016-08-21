@@ -50,11 +50,20 @@ module.exports = {
 
 	getConsultas: function(req , res){
 		console.log("Getting Consultas");
+		console.log("medico cpf:",req.session.me);
 		Consulta.find({medico: req.session.me}).populate('paciente')
 		.exec(function(err,records){
-			if(err)
+			console.log("Returning Consultas");
+			if(err){
+				console.log("ERRO: ",err);
 				return res.json(err);
-			return res.json(records);
+			}
+				
+			if(records){
+				console.log("Found Consultas", records);
+				return res.json(records);
+			}
+			
 		});
 	},
 
