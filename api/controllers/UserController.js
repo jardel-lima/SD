@@ -67,13 +67,20 @@ module.exports = {
     console.log(req.allParams());
 
     if(req.param('senha')!=req.param('rsenha')){
-    	console.log("Erro: "+err);
+    	//console.log("Erro: "+err);
 		return res.view('user/signup',{erro:"Senhas não conferem"});
     }
 
 	var hash = bcrypt.hashSync(req.param('senha'), 10);
 	console.log("Hash -created");
     console.log(hash);
+
+    var cpf = req.param('cpf');
+    
+    if(cpf.length!=11){
+    	return res.view('user/signup',{erro:"CPF Inválido"});
+    }
+
 
 	User.signup({
 	name: req.param('nome'),
