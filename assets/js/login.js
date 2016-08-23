@@ -38,7 +38,7 @@
 					// when the response is available
 					console.log(data);
 					console.log("Login: 0K")
-					location.assign("https://localhost:443/");
+					location.assign("/");
 				  }).
 				  error(function(data, status, headers, config) {
 					// called asynchronously if an error occurs

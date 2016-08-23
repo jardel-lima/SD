@@ -12,14 +12,14 @@ app.controller('consultasController', /*[/*'$cookies','$http',/*'$filter','$scop
 
 	$scope.nova_consulta = function(){
 		console.log("Nova Consulta");
-		location.assign("https://localhost:443/nova_consulta")
+		location.assign("/nova_consulta")
 		console.log("OK");
 				
 	};
 	$scope.loadConsulta = function(id){
 		console.log(id);
 		$cookies.put('consultaId',id);
-		location.assign("https://localhost:443/nova_consulta");
+		location.assign("/nova_consulta");
 	};
 
 	init = function(){

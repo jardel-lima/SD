@@ -7,7 +7,7 @@
 	 	<div class="col-md-4">
 		  	<div class="input-group" style="width:100%;">
 		    	<span class='input-group-addon'>CPF</span>
-		    	<input type="text" class="form-control" ng-model="pCPF" required ng-disabled='edit_paciente'>
+		    	<input id="id_cpf" type="text" class="form-control" ng-model="pCPF" required ng-disabled='edit_paciente || update_paciente'>
 		  	</div>
 		</div>
 
@@ -15,7 +15,7 @@
 		
 
 		<div class="col-md-4">
-  			<button type="submit" class="btn btn-default" ng-click="pLocalizar()" ng-disabled='edit_paciente' ng-hide='edit_paciente'>Pesquisar</button></br> </br>
+  			<button id='id_bt_pesq' type="submit" class="btn btn-default" ng-click="pLocalizar()" ng-disabled='edit_paciente' ng-hide='edit_paciente|| update_paciente'>Pesquisar</button></br> </br>
   		</div>
   	</div>
   	<div class='row'>

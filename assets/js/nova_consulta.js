@@ -56,7 +56,7 @@ app.controller('novaConsultaController', function($scope,$http,$filter,$cookies)
 	$scope.pSalvar = function(){
 	
 		//console.log(date);
-		var pNasc = $scope.pNasc.split('/');
+		var pNasc = $scope.pNasc? $scope.pNasc.split('/'): '01/01/01';
 		pNasc = pNasc[2]+'-'+pNasc[1]+'-'+(Number(pNasc[0])+1);
 		//console.log(typeof(parseInt($scope.pNumero)));
 
@@ -94,7 +94,7 @@ app.controller('novaConsultaController', function($scope,$http,$filter,$cookies)
 					// or server returns response with an error status.
 					$scope.modal_title = "ERRO";
 					console.log(data);
-					$scope.modal_body = "Erro ao Cadastrar Paciente!!!\n Verifique os campos";
+					$scope.modal_body = "Erro ao Cadastrar Paciente!!! Campos incorretos ou email já cadastrado!!!";
 					$scope.showModal('alert_modal');
 					
 					//
@@ -246,7 +246,7 @@ app.controller('novaConsultaController', function($scope,$http,$filter,$cookies)
 	};
 
 	$scope.voltar = function(){
-		location.assign('https://localhost:443/consultas');
+		location.assign('/consultas');
 	};
 
 	$scope.addMecicamento =  function(){
