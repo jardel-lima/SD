@@ -58,6 +58,13 @@ module.exports = {
 				return res.json(200,paciente);
 			}	
 		});
+	},
+
+	update_:function(req, res){
+		console.log("Updating Paciente");
+		console.log(req.allParams());
+		//Paciente.update_(req.param("cpf"),req.param("update"), res);
+		Paciente.update_(req.param("cpf"),req.param("update"),res);
 	}
 	
 };

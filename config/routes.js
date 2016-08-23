@@ -41,6 +41,10 @@ module.exports.routes = {
   'post /get_consultas':'ConsultaController.getConsultas',
   'post /get_consulta_info':'ConsultaController.getConsultaInfo',
   'post /get_locais_trabalho':'UserController.getLocalTrabalho',
+  'post /update_paciente':'PacienteController.update_',
+  'post /update_consulta'  : 'ConsultaController.update_',
+  'post /close_msg' : 'ConsultaController.close_msg',
+  'post /get_number_msg' : 'ConsultaController.get_number_msg',
 
   'get /': 'LoginController.login',
   'get /login': 'LoginController.login',

@@ -83,6 +83,10 @@ module.exports = {
     medico:{
       model:'user',
       columnName:'Medico_cpf'
+    },
+
+    msg:{
+      type:'string',
     }
 
   },
@@ -102,7 +106,20 @@ module.exports = {
       acomp:inputs.acomp,
       status:'A INICIAR'  
     }).exec(cb);
-  }
+  },
+
+  update_:function(id, params, res){
+      Consulta.update({id:id},params).exec(
+        function(err, register){
+          if(err){
+            console.log("Error: 1", err);
+            return res.json(500,err);
+          }
+          else{
+              return res.ok();
+            }
+      });
+    }
 
   
 };

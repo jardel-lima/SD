@@ -143,7 +143,7 @@
 		<div class="col-md-12">
 	  			<button type="submit" class="btn btn-default" ng-click="pSalvar()" ng-hide='edit_paciente || update_paciente '>Salvar</button>
 	  			<button class="btn btn-default" ng-click="update_paciente = true; edit_paciente = false;" ng-hide='!edit_paciente || update_paciente'>Editar</button>
-	  			<button class="btn btn-default" ng-click="update_paciente = false;" ng-hide='!update_paciente '>Atulizar</button>
+	  			<button class="btn btn-default" ng-click="update_paciente = false; updatePaciente()" ng-hide='!update_paciente '>Atulizar</button>
 	  			<button class="btn btn-default" ng-click="update_paciente = false; edit_paciente = true;" ng-hide='!update_paciente'>Cancelar</button>
 	  	</div>
 	</div>

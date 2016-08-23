@@ -112,6 +112,55 @@ module.exports = {
     Paciente.findOne({
       cpf: find.cpf
     }).exec(cb);
-  } 
+  },
+
+  /*update_: function(cpf, params, res){
+    Paciente.findOne({cpf:cpf}).exec(
+      function(err, register){
+        if(err){
+          console.log("Error: 1", erro);
+          return res.json(500,err);
+        }
+        else{
+
+          register.nome = params.nome;
+          register.email = params.email;
+          register.rg = params.rg;
+          register.cpf = params.cpf;
+          register.telefone = params.telefone;
+          register.estado = params.estado;
+          register.cidade = params.cidade;  
+          register.bairro = params.bairro;
+          register.rua = params.rua;
+          register.numero = params.numero;
+          register.cep = params.cep;
+          register.nascimento = params.nascimento; 
+
+          register.save(function(err){
+            if(err){
+              console.log( "Error: 2", err);
+              return res.json(500,err);
+            }
+            return res.ok();
+          });
+        }
+      });
+    },*/
+    
+    update_:function(cpf, params, res){
+      Paciente.update({cpf:cpf},params).exec(
+        function(err, register){
+          if(err){
+            console.log("Error: 1", erro);
+            return res.json(500,err);
+          }
+          else{
+              return res.ok();
+            }
+      });
+    }
+     // );
+
+ // } 
 };
 
